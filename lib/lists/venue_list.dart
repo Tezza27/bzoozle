@@ -104,7 +104,7 @@ List<ListingCardClass> listingCardList = <ListingCardClass>[
       venueName: "Pin-ups Bar",
       venueArea: "North of Strip",
       venueLocation: "Cannery Casino",
-      venueImage: "assets/rebar.png",
+      venueImage: "assets/pinups.png",
       venueOpenTime: "00:00",
       venueCloseTime: "00:00",
       venueHHStart: "03:00",
