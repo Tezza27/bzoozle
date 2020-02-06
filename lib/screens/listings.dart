@@ -40,10 +40,9 @@ class _ListingsState extends State<ListingsScreen> {
                   shrinkWrap: true,
                   itemCount: listingCardList.length,
                   itemBuilder: (context, int index) {
-                    includeItem = listFilter(
+                    if (listFilter(
                         venueArea: listingCardList[index].venueArea,
-                        areaDiscriminator: widget.areaTitle);
-                    if (includeItem) {
+                        areaDiscriminator: widget.areaTitle)) {
                       return InkWell(
                           onTap: () {},
                           child:
