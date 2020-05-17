@@ -11,5 +11,6 @@ final borderColour = const Color(0xFFFF6600);
 final tabSelectionColour = const Color(0xFFFF6600);
 final tabUnselectedColour = const Color(0xFFFFA500);
 final fadeColour = const Color(0xFFFF6600);
+final iconColour = const Color(0xFFFF6600);
 
 final transparentColour = const Color(0x00006600);
