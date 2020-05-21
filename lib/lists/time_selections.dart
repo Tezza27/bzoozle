@@ -1,4 +1,5 @@
 List<String> hoursList = [
+  "",
   "00",
   "01",
   "02",
@@ -7,7 +8,7 @@ List<String> hoursList = [
   "05",
   "06",
   "07",
-  "088",
+  "08",
   "09",
   "10",
   "11",
@@ -24,4 +25,4 @@ List<String> hoursList = [
   "22",
   "23"
 ];
-List<String> minutesList = ["00", "15", "30", "45"];
+List<String> minutesList = ["", "00", "15", "30", "45"];

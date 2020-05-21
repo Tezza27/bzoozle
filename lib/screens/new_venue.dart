@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bzoozle/lists/time_selections.dart';
-import 'package:bzoozle/settings/dimensions.dart';
-import 'package:bzoozle/settings/colours.dart';
+import 'package:bzoozle/templates/time_dropdown.dart';
 
 class NewVenueScreen extends StatefulWidget {
   @override
@@ -83,28 +82,28 @@ class _NewVenueScreenState extends State<NewVenueScreen> {
                     value: false,
                     onChanged: null,
                   ),
-                  timeDropdown(
+                  TimeDropdown(
                       startValue: mondayOpen1Hour, timeList: hoursList),
                   Text(":"),
-                  timeDropdown(
+                  TimeDropdown(
                       startValue: mondayOpen1Minute, timeList: minutesList),
                   Text(" - "),
-                  timeDropdown(
+                  TimeDropdown(
                       startValue: mondayClose1Hour, timeList: hoursList),
                   Text(":"),
-                  timeDropdown(
+                  TimeDropdown(
                       startValue: mondayClose1Minute, timeList: minutesList),
                   Spacer(),
-                  timeDropdown(
+                  TimeDropdown(
                       startValue: mondayOpen2Hour, timeList: hoursList),
                   Text(":"),
-                  timeDropdown(
+                  TimeDropdown(
                       startValue: mondayOpen2Minute, timeList: minutesList),
                   Text(" - "),
-                  timeDropdown(
+                  TimeDropdown(
                       startValue: mondayClose2Hour, timeList: hoursList),
                   Text(":"),
-                  timeDropdown(
+                  TimeDropdown(
                       startValue: mondayClose2Minute, timeList: minutesList),
                 ],
               ),
@@ -115,34 +114,4 @@ class _NewVenueScreenState extends State<NewVenueScreen> {
     );
   }
 
-  Container timeDropdown({String startValue, List<String> timeList}) {
-    selectedValue = startValue;
-    return Container(
-      height: timeDropdownHeight,
-      decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-              width: 1.0, style: BorderStyle.solid, color: borderColour),
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        ),
-      ),
-      child: DropdownButton<String>(
-        value: selectedValue,
-        underline: Container(),
-        elevation: 10,
-        iconSize: 0.00,
-        onChanged: (String newValue) {
-          setState(() {
-            selectedValue = newValue;
-          });
-        },
-        items: timeList.map<DropdownMenuItem<String>>((String newValue) {
-          return DropdownMenuItem<String>(
-            value: newValue,
-            child: Text(newValue),
-          );
-        }).toList(),
-      ),
-    );
-  }
 }
