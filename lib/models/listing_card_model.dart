@@ -1,9 +1,28 @@
+// This class provides the data to construct the cards on the listings screen
 class ListingCardClass {
-  const ListingCardClass({this.venueID,
-    this.venueName,
+  const ListingCardClass(
+      {this.venueID,
+      this.venueName,
       this.venueArea,
       this.venueLocation,
       this.venueImage,
+      this.venueRegPrice,
+      this.venueHHPrice,
+      this.venueInOut,
+      this.venueFood,
+      this.venueSmoking,
+      this.venueRecMusic,
+      this.venueLiveEnt,
+      this.venueCCharge,
+      this.venueDressCode,
+      this.venueChildPolicy,
+      this.venueAccessibility,
+      this.venueDistance,
+      this.venueGoodFor1,
+      this.venueGoodFor2,
+      this.venueGoodFor3,
+      this.venueGoodFor4,
+      this.venueGoodFor5,
       this.venueOpenMonday1,
       this.venueOpenMonday2,
       this.venueOpenTuesday1,
@@ -15,61 +34,78 @@ class ListingCardClass {
       this.venueOpenFriday1,
       this.venueOpenFriday2,
       this.venueOpenSaturday1,
-      this.venueOpenSaturday2,
-      this.venueOpenSunday1,
-      this.venueOpenSunday2,
-      this.venueCloseMonday1,
-      this.venueCloseMonday2,
-      this.venueCloseTuesday1,
-      this.venueCloseTuesday2,
-      this.venueCloseWednesday1,
-      this.venueCloseWednesday2,
-      this.venueCloseThursday1,
-      this.venueCloseThursday2,
-      this.venueCloseFriday1,
-      this.venueCloseFriday2,
-      this.venueCloseSaturday1,
-      this.venueCloseSaturday2,
-      this.venueCloseSunday1,
-      this.venueCloseSunday2,
-      this.venueHHStartMonday1,
-      this.venueHHStartMonday2,
-      this.venueHHStartTuesday1,
-      this.venueHHStartTuesday2,
-      this.venueHHStartWednesday1,
-      this.venueHHStartWednesday2,
-      this.venueHHStartThursday1,
-      this.venueHHStartThursday2,
-      this.venueHHStartFriday1,
-      this.venueHHStartFriday2,
-      this.venueHHStartSaturday1,
-      this.venueHHStartSaturday2,
-      this.venueHHStartSunday1,
-      this.venueHHStartSunday2,
-      this.venueHHEndMonday1,
-      this.venueHHEndMonday2,
-      this.venueHHEndTuesday1,
-      this.venueHHEndTuesday2,
-      this.venueHHEndWednesday1,
-      this.venueHHEndWednesday2,
-      this.venueHHEndThursday1,
-      this.venueHHEndThursday2,
-      this.venueHHEndFriday1,
-      this.venueHHEndFriday2,
-      this.venueHHEndSaturday1,
-      this.venueHHEndSaturday2,
-      this.venueHHEndSunday1,
-      this.venueHHEndSunday2,
-      this.venueNextHHStart,
-      this.venueNextHHEnd,
-      this.venueNextOpen,
-      this.venueNextClose});
+    this.venueOpenSaturday2,
+    this.venueOpenSunday1,
+    this.venueOpenSunday2,
+    this.venueCloseMonday1,
+    this.venueCloseMonday2,
+    this.venueCloseTuesday1,
+    this.venueCloseTuesday2,
+    this.venueCloseWednesday1,
+    this.venueCloseWednesday2,
+    this.venueCloseThursday1,
+    this.venueCloseThursday2,
+    this.venueCloseFriday1,
+    this.venueCloseFriday2,
+    this.venueCloseSaturday1,
+    this.venueCloseSaturday2,
+    this.venueCloseSunday1,
+    this.venueCloseSunday2,
+    this.venueHHStartMonday1,
+    this.venueHHStartMonday2,
+    this.venueHHStartTuesday1,
+    this.venueHHStartTuesday2,
+    this.venueHHStartWednesday1,
+    this.venueHHStartWednesday2,
+    this.venueHHStartThursday1,
+    this.venueHHStartThursday2,
+    this.venueHHStartFriday1,
+    this.venueHHStartFriday2,
+    this.venueHHStartSaturday1,
+    this.venueHHStartSaturday2,
+    this.venueHHStartSunday1,
+    this.venueHHStartSunday2,
+    this.venueHHEndMonday1,
+    this.venueHHEndMonday2,
+    this.venueHHEndTuesday1,
+    this.venueHHEndTuesday2,
+    this.venueHHEndWednesday1,
+    this.venueHHEndWednesday2,
+    this.venueHHEndThursday1,
+    this.venueHHEndThursday2,
+    this.venueHHEndFriday1,
+    this.venueHHEndFriday2,
+    this.venueHHEndSaturday1,
+    this.venueHHEndSaturday2,
+    this.venueHHEndSunday1,
+    this.venueHHEndSunday2,
+    this.venueNextHHStart,
+    this.venueNextHHEnd,
+    this.venueNextOpen,
+    this.venueNextClose});
 
   final String venueID;
   final String venueName;
   final String venueArea;
   final String venueLocation;
   final String venueImage;
+  final String venueRegPrice;
+  final String venueHHPrice;
+  final String venueInOut;
+  final String venueFood;
+  final String venueSmoking;
+  final String venueRecMusic;
+  final String venueLiveEnt;
+  final String venueCCharge;
+  final String venueDressCode;
+  final String venueChildPolicy;
+  final String venueAccessibility;
+  final String venueDistance;
+  final String venueGoodFor1;
+  final String venueGoodFor2;
+  final String venueGoodFor3;
+  final String venueGoodFor4;
+  final String venueGoodFor5;
   final String venueOpenMonday1;
   final String venueOpenMonday2;
   final String venueOpenTuesday1;

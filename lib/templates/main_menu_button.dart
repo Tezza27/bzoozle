@@ -15,6 +15,7 @@ class MainMenuButton extends StatelessWidget {
         },
         textColor: textColour,
         color: buttonColour,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         child: Text(mainMenuButton.buttonText));
   }
 }

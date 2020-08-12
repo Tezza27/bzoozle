@@ -9,15 +9,16 @@ class TimeDropdown extends StatefulWidget {
   final List<String> timeList;
 
   @override
-  _TimeDropdownState createState() => _TimeDropdownState();
+  _TimeDropdownState createState() => _TimeDropdownState(startValue);
 }
 
 class _TimeDropdownState extends State<TimeDropdown> {
-  String selectedValue;
+  _TimeDropdownState(this.startValue);
+
+  String startValue;
 
   @override
   Widget build(BuildContext context) {
-    selectedValue = widget.startValue;
     return Container(
       height: timeDropdownHeight,
       decoration: ShapeDecoration(
@@ -28,13 +29,13 @@ class _TimeDropdownState extends State<TimeDropdown> {
         ),
       ),
       child: DropdownButton<String>(
-        value: selectedValue,
+        value: startValue,
         underline: Container(),
         elevation: 10,
         iconSize: 0.00,
         onChanged: (String newValue) {
           setState(() {
-            selectedValue = newValue;
+            startValue = newValue;
           });
         },
         items: widget.timeList.map<DropdownMenuItem<String>>((String newValue) {
@@ -46,4 +47,4 @@ class _TimeDropdownState extends State<TimeDropdown> {
       ),
     );
   }
-}}
+}

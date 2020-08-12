@@ -1,3 +1,4 @@
+// This list is used for dropdown menus concerned with setting times
 List<String> hoursList = [
   "",
   "00",
