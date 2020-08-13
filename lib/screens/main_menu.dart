@@ -13,10 +13,10 @@ class MainMenuScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: GridView(
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-              childAspectRatio: 1 / 1,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
+              maxCrossAxisExtent: 200.0,
+              childAspectRatio: 1.0,
+              crossAxisSpacing: 20.0,
+              mainAxisSpacing: 20.0,
             ),
             children: menuButtonList
                 .map((menuButtonClass) => MainMenuButton(
@@ -29,5 +29,3 @@ class MainMenuScreen extends StatelessWidget {
     );
   }
 }
-
-
