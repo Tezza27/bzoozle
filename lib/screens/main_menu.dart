@@ -11,21 +11,25 @@ class MainMenuScreen extends StatelessWidget {
         color: backgroundColour,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: GridView(
+          child: GridView.builder(
+            itemCount: menuButtonList.length,
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200.0,
               childAspectRatio: 1.0,
               crossAxisSpacing: 20.0,
               mainAxisSpacing: 20.0,
             ),
-            children: menuButtonList
-                .map((menuButtonClass) => MainMenuButton(
-                      mainMenuButton: menuButtonClass,
-                    ))
-                .toList(),
+            itemBuilder: (BuildContext context, int index) => MainMenuButton(
+              mainMenuButton: menuButtonList[index],
+            ),
           ),
         ),
       ),
     );
   }
+//            children: menuButtonList
+//                .map((menuButtonClass) => MainMenuButton(
+//                      mainMenuButton: menuButtonClass,
+//                    ))
+//                .toList(),
 }

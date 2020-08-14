@@ -12,17 +12,13 @@ final List<MenuButtonClass> menuButtonList = const <MenuButtonClass>[
       routerName: "EditVenueScreen",
       buttonImage: null),
   const MenuButtonClass(
-      buttonText: "My Account",
-      routerName: "ListingsScreen",
-      buttonImage: null),
-  const MenuButtonClass(
-      buttonText: "My Trips", routerName: "ListingsScreen", buttonImage: null),
+      buttonText: "My Account", routerName: "AccountScreen", buttonImage: null),
   const MenuButtonClass(
       buttonText: "Share BZOOZLE",
       routerName: "ShareScreen",
       buttonImage: null),
   const MenuButtonClass(
       buttonText: "Talk to BZOOZLE",
-      routerName: "ListingsScreen",
+      routerName: "TalkToUsScreen",
       buttonImage: null),
 ];
