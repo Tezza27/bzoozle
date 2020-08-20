@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+
 import '../lists/venue_list.dart';
-import '../templates/listing_card.dart';
 import '../settings/colours.dart';
+import '../templates/listing_card.dart';
 
 class ListingsScreen extends StatefulWidget {
-  final String areaTitle;
-
-  const ListingsScreen({Key key, this.areaTitle}) : super(key: key);
+//  final String areaTitle;
+//
+//  const ListingsScreen({Key key, this.areaTitle}) : super(key: key);
 
   @override
   _ListingsState createState() => new _ListingsState();
@@ -35,7 +36,7 @@ class _ListingsState extends State<ListingsScreen> {
       child: Column(
         children: <Widget>[
           Text(
-            widget.areaTitle.toUpperCase(),
+            "Area",
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -48,16 +49,10 @@ class _ListingsState extends State<ListingsScreen> {
                   shrinkWrap: true,
                   itemCount: listingCardList.length,
                   itemBuilder: (context, int index) {
-                    if (listFilter(
-                        venueArea: listingCardList[index].venueArea,
-                        areaDiscriminator: widget.areaTitle)) {
-                      return InkWell(
-                          onTap: () {},
-                          child:
-                              ListingCard(listingCard: listingCardList[index]));
-                    } else {
-                      return Container();
-                    }
+                    return InkWell(
+                        onTap: () {},
+                        child:
+                            ListingCard(listingCard: listingCardList[index]));
                   }),
             ),
           ),
@@ -66,12 +61,12 @@ class _ListingsState extends State<ListingsScreen> {
     ));
   }
 
-  bool listFilter({String venueArea, String areaDiscriminator}) {
-    bool includeItemBool = true;
-    if (areaDiscriminator != "All Las Vegas" &&
-        venueArea != areaDiscriminator) {
-      includeItemBool = false;
-    }
-    return includeItemBool;
-  }
+//  bool listFilter({String venueArea, String areaDiscriminator}) {
+//    bool includeItemBool = true;
+//    if (areaDiscriminator != "All Las Vegas" &&
+//        venueArea != areaDiscriminator) {
+//      includeItemBool = false;
+//    }
+//    return includeItemBool;
+//  }
 }
