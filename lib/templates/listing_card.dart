@@ -379,10 +379,25 @@ class ListingCard extends StatelessWidget {
     return closeTime;
   }
 
-  Widget timeBox({String headerText,
-    String mainText,
-    Color backgroundColour,
-    double cornerRound}) {
+  Widget timeBox(
+      {String headerText,
+      String mainText,
+      Color backgroundColour,
+      double cornerRound}) {
+    if (headerText == "Next Happy Hour") {
+      String nextHH = nextHappyHour();
+      if (nextHH == "N/A") {
+        mainText = "N/A";
+      } else {
+        DateTime nextHHStart = DateTime.parse(nextHH.split(",")[0]);
+        DateTime nextHHEnd = DateTime.parse(nextHH.split(",")[1]);
+        mainText =
+            "${nextHHStart.hour.toString()}:${nextHHStart.minute.toString().padRight(2, "0")}-${nextHHEnd.hour.toString()}:${nextHHEnd.minute.toString().padRight(2, "0")}";
+        String Test = "BOB";
+//        mainText =
+//            "${nextHHStart.weekday.toString()} \n ${nextHHStart.hour.toString()}:${nextHHStart.minute.toString()}-${nextHHEnd.hour.toString()}:${nextHHEnd.minute.toString()}";
+      }
+    }
     return Expanded(
       child: Stack(
         children: <Widget>[
@@ -490,95 +505,420 @@ class ListingCard extends StatelessWidget {
     return returnSymbol;
   }
 
-  String nextHappyHour(int today, String hour, DateTime time) {
-    String nextHHTime = "NONE";
-    List<DateTime> startHHList = List<DateTime>();
-    List<DateTime> endHHList = List<DateTime>();
-
-
-    TimeOfDay mondayHHTime1 = TimeOfDay(
-        hour: int.parse(listingCard.venueHHStartMonday1.split(":")[0]),
-        minute: int.parse(listingCard.venueHHStartMonday1.split(":")[1]));
+  String nextHappyHour() {
+    String nextHHTime = "N/A";
+    List<dynamic> startHHList = List<dynamic>();
+    List<dynamic> endHHList = List<dynamic>();
+    DateTime now = DateTime.now();
+    int today = now.weekday;
+    dynamic startHHTime;
+    dynamic endHHTime;
+    int daysToAdd = 0;
     for (int i = 0; i < 7; i++) {
-      int daysToAdd = 7 - today - i - 1;
-      if (daysToAdd < 0) {
-        daysToAdd = daysToAdd * -1;
+      daysToAdd = (i + 1 < today) ? 8 - today + i : i + 1 - today;
+      switch (i) {
+        case 0:
+          {
+            if (listingCard.venueHHStartMonday1 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHStartMonday1.split(":")[0]),
+                  int.parse(listingCard.venueHHStartMonday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndMonday1.split(":")[0]),
+                  int.parse(listingCard.venueHHEndMonday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+
+            if (listingCard.venueHHStartMonday2 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHStartMonday2.split(":")[0]),
+                  int.parse(listingCard.venueHHStartMonday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndMonday2.split(":")[0]),
+                  int.parse(listingCard.venueHHEndMonday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+          }
+          break;
+        case 1:
+          {
+            if (listingCard.venueHHStartTuesday1 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHStartTuesday1.split(":")[0]),
+                  int.parse(listingCard.venueHHStartTuesday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndTuesday1.split(":")[0]),
+                  int.parse(listingCard.venueHHEndTuesday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+
+            if (listingCard.venueHHStartTuesday2 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHStartTuesday2.split(":")[0]),
+                  int.parse(listingCard.venueHHStartTuesday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndTuesday2.split(":")[0]),
+                  int.parse(listingCard.venueHHEndTuesday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+          }
+          break;
+        case 2:
+          {
+            if (listingCard.venueHHStartWednesday1 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(
+                      listingCard.venueHHStartWednesday1.split(":")[0]),
+                  int.parse(
+                      listingCard.venueHHStartWednesday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndWednesday1.split(":")[0]),
+                  int.parse(listingCard.venueHHEndWednesday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+
+            if (listingCard.venueHHStartWednesday2 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(
+                      listingCard.venueHHStartWednesday2.split(":")[0]),
+                  int.parse(
+                      listingCard.venueHHStartWednesday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndWednesday2.split(":")[0]),
+                  int.parse(listingCard.venueHHEndWednesday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+          }
+          break;
+        case 3:
+          {
+            if (listingCard.venueHHStartThursday1 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(
+                      listingCard.venueHHStartThursday1.split(":")[0]),
+                  int.parse(
+                      listingCard.venueHHStartThursday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndThursday1.split(":")[0]),
+                  int.parse(listingCard.venueHHEndThursday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+
+            if (listingCard.venueHHStartThursday2 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(
+                      listingCard.venueHHStartThursday2.split(":")[0]),
+                  int.parse(
+                      listingCard.venueHHStartThursday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndThursday2.split(":")[0]),
+                  int.parse(listingCard.venueHHEndThursday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+          }
+          break;
+        case 4:
+          {
+            if (listingCard.venueHHStartFriday1 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHStartFriday1.split(":")[0]),
+                  int.parse(listingCard.venueHHStartFriday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndFriday1.split(":")[0]),
+                  int.parse(listingCard.venueHHEndFriday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+
+            if (listingCard.venueHHStartFriday2 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHStartFriday2.split(":")[0]),
+                  int.parse(listingCard.venueHHStartFriday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndFriday2.split(":")[0]),
+                  int.parse(listingCard.venueHHEndFriday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+          }
+          break;
+        case 5:
+          {
+            if (listingCard.venueHHStartSaturday1 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(
+                      listingCard.venueHHStartSaturday1.split(":")[0]),
+                  int.parse(
+                      listingCard.venueHHStartSaturday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndSaturday1.split(":")[0]),
+                  int.parse(listingCard.venueHHEndSaturday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+
+            if (listingCard.venueHHStartSaturday2 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(
+                      listingCard.venueHHStartSaturday2.split(":")[0]),
+                  int.parse(
+                      listingCard.venueHHStartSaturday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndSaturday2.split(":")[0]),
+                  int.parse(listingCard.venueHHEndSaturday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+          }
+          break;
+
+        case 6:
+          {
+            if (listingCard.venueHHStartSunday1 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHStartSunday1.split(":")[0]),
+                  int.parse(listingCard.venueHHStartSunday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndSunday1.split(":")[0]),
+                  int.parse(listingCard.venueHHEndSunday1.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+
+            if (listingCard.venueHHStartSunday2 == "") {
+              startHHTime = "N/A";
+              endHHTime = "N/A";
+            } else {
+              startHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHStartSunday2.split(":")[0]),
+                  int.parse(listingCard.venueHHStartSunday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              endHHTime = DateTime(
+                  now.year,
+                  now.month,
+                  now.day,
+                  int.parse(listingCard.venueHHEndSunday2.split(":")[0]),
+                  int.parse(listingCard.venueHHEndSunday2.split(":")[1]))
+                  .add(Duration(days: daysToAdd));
+              if (startHHTime.isAfter(endHHTime)) {
+                endHHTime = endHHTime.add(Duration(days: 1));
+              }
+            }
+            startHHList.add(startHHTime);
+            endHHList.add(endHHTime);
+          }
+          break;
       }
     }
-//    List<String> startHHList = [
-//      listingCard.venueHHStartMonday1,
-//      listingCard.venueHHStartMonday2,
-//      listingCard.venueHHStartTuesday1,
-//      listingCard.venueHHStartTuesday2,
-//      listingCard.venueHHStartWednesday1,
-//      listingCard.venueHHStartWednesday2,
-//      listingCard.venueHHStartThursday1,
-//      listingCard.venueHHStartThursday2,
-//      listingCard.venueHHStartFriday1,
-//      listingCard.venueHHStartFriday2,
-//      listingCard.venueHHStartSaturday1,
-//      listingCard.venueHHStartSaturday2,
-//      listingCard.venueHHStartSunday1,
-//      listingCard.venueHHStartSunday2,
-//    ];
-//    List<String> endHHList = [
-//      listingCard.venueHHEndMonday1,
-//      listingCard.venueHHEndMonday2,
-//      listingCard.venueHHEndTuesday1,
-//      listingCard.venueHHEndTuesday2,
-//      listingCard.venueHHEndWednesday1,
-//      listingCard.venueHHEndWednesday2,
-//      listingCard.venueHHEndThursday1,
-//      listingCard.venueHHEndThursday2,
-//      listingCard.venueHHEndFriday1,
-//      listingCard.venueHHEndFriday2,
-//      listingCard.venueHHEndSaturday1,
-//      listingCard.venueHHEndSaturday2,
-//      listingCard.venueHHEndSunday1,
-//      listingCard.venueHHEndSunday2,
-//    ];
+    print(startHHList);
+    startHHList.sort();
+    print(startHHList);
+    print(endHHList);
+    endHHList.sort();
+    print(endHHList);
 
-
-//    switch (today) {
-//      case 1:
-//        {
-//          if (listingCard.venueHHStartMonday1 == ""){
-//
-//          }
-//          nextHHTime = listingCard.venueHHStartMonday1;
-//        }
-//        break;
-//      case 2:
-//        {
-//          nextHHTime = listingCard.venueCloseTuesday1;
-//        }
-//        break;
-//      case 3:
-//        {
-//          nextHHTime = listingCard.venueCloseWednesday1;
-//        }
-//        break;
-//      case 4:
-//        {
-//          nextHHTime = listingCard.venueCloseThursday1;
-//        }
-//        break;
-//      case 5:
-//        {
-//          nextHHTime = listingCard.venueCloseFriday1;
-//        }
-//        break;
-//      case 6:
-//        {
-//          nextHHTime = listingCard.venueCloseSaturday1;
-//        }
-//        break;
-//      case 7:
-//        {
-//          nextHHTime = listingCard.venueCloseSunday1;
-//        }
-//        break;
-//    }
+    for (int i = 0; i < 14; i++) {
+      if (startHHList[i] != "N/A") {
+        if (now.isBefore(endHHList[i])) {
+          nextHHTime =
+          "${startHHList[i].toString()},${endHHList[i].toString()}";
+          break;
+        }
+      }
+    }
 
     return nextHHTime;
   }
