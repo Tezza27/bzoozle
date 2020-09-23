@@ -1,39 +1,40 @@
 // This class provides the data to construct the cards on the listings screen
 class ListingCardClass {
-  const ListingCardClass(
-      {this.venueID,
-      this.venueName,
-      this.venueArea,
-      this.venueLocation,
-      this.venueImage,
-      this.venueRegPrice,
-      this.venueHHPrice,
-      this.venueInOut,
-      this.venueFood,
-      this.venueSmoking,
-      this.venueRecMusic,
-      this.venueLiveEnt,
-      this.venueCCharge,
-      this.venueDressCode,
-      this.venueChildPolicy,
-      this.venueAccessibility,
-      this.venueDistance,
-      this.venueGoodFor1,
-      this.venueGoodFor2,
-      this.venueGoodFor3,
-      this.venueGoodFor4,
-      this.venueGoodFor5,
-      this.venueOpenMonday1,
-      this.venueOpenMonday2,
-      this.venueOpenTuesday1,
-      this.venueOpenTuesday2,
-      this.venueOpenWednesday1,
-      this.venueOpenWednesday2,
-      this.venueOpenThursday1,
-      this.venueOpenThursday2,
-      this.venueOpenFriday1,
-      this.venueOpenFriday2,
-      this.venueOpenSaturday1,
+  const ListingCardClass({
+    this.venueID,
+    this.venueName,
+    this.venueArea,
+    this.venueLocation,
+    this.venueImage,
+    this.venueRegPrice,
+    this.venueHHPrice,
+    this.venueInOut,
+    this.venueFood,
+    this.venueSmoking,
+    this.venueRecMusic,
+    this.venueLiveEnt,
+    this.venueCCharge,
+    this.venueDressCode,
+    this.venueChildPolicy,
+    this.venueAccessibility,
+    this.venueDistance,
+    this.venueGoodFor1,
+    this.venueGoodFor2,
+    this.venueGoodFor3,
+    this.venueGoodFor4,
+    this.venueGoodFor5,
+    this.venueGoodFor6,
+    this.venueOpenMonday1,
+    this.venueOpenMonday2,
+    this.venueOpenTuesday1,
+    this.venueOpenTuesday2,
+    this.venueOpenWednesday1,
+    this.venueOpenWednesday2,
+    this.venueOpenThursday1,
+    this.venueOpenThursday2,
+    this.venueOpenFriday1,
+    this.venueOpenFriday2,
+    this.venueOpenSaturday1,
     this.venueOpenSaturday2,
     this.venueOpenSunday1,
     this.venueOpenSunday2,
@@ -79,18 +80,15 @@ class ListingCardClass {
     this.venueHHEndSaturday2,
     this.venueHHEndSunday1,
     this.venueHHEndSunday2,
-    this.venueNextHHStart,
-    this.venueNextHHEnd,
-    this.venueNextOpen,
-    this.venueNextClose});
+  });
 
   final String venueID;
   final String venueName;
   final String venueArea;
   final String venueLocation;
   final String venueImage;
-  final String venueRegPrice;
-  final String venueHHPrice;
+  final int venueRegPrice;
+  final int venueHHPrice;
   final String venueInOut;
   final String venueFood;
   final String venueSmoking;
@@ -106,6 +104,7 @@ class ListingCardClass {
   final String venueGoodFor3;
   final String venueGoodFor4;
   final String venueGoodFor5;
+  final String venueGoodFor6;
   final String venueOpenMonday1;
   final String venueOpenMonday2;
   final String venueOpenTuesday1;
@@ -162,8 +161,4 @@ class ListingCardClass {
   final String venueHHEndSaturday2;
   final String venueHHEndSunday1;
   final String venueHHEndSunday2;
-  final String venueNextHHStart;
-  final String venueNextHHEnd;
-  final String venueNextOpen;
-  final String venueNextClose;
 }

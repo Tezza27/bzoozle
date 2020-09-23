@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 final backgroundColour = const Color(0xFF000000);
 final appBarColour = const Color(0xFF000000);
 final textColour = const Color(0xFF000000);
+final categoryCardColour = const Color(0xFF1c1c1c);
+final reverseTextColour = const Color(0xFFC8C8C8);
 final orangeText = const Color(0xFFFF6600);
 final textHeaderColour = const Color(0xFFFF6600);
 final textFieldColour = const Color(0xFFFFFFFF);

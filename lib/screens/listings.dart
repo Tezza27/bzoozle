@@ -4,6 +4,14 @@ import '../lists/venue_list.dart';
 import '../settings/colours.dart';
 import '../templates/listing_card.dart';
 
+/*This is the listings screen
+Purpose: To display a scrollable list of cards (using the 'listing_card.dart template)
+for each venue in the filtered list, containing high level details to help the user select venues to explore
+ further by clicking on a card to take them to the full details for the
+ selected venue. A long press on a particular section of the card takes the user
+ to the edit screen, enabling them to update that information for that venue.
+Input parameters: listingCard objects*/
+
 class ListingsScreen extends StatefulWidget {
 //  final String areaTitle;
 //
@@ -31,34 +39,52 @@ class _ListingsState extends State<ListingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      color: backgroundColour,
-      child: Column(
-        children: <Widget>[
-          Text(
-            "Area",
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: textHeaderColour),
-          ),
-          Expanded(
+      appBar: AppBar(
+        backgroundColor: appBarColour,
+        iconTheme: IconThemeData(color: iconColour),
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "KeyFacilitiesScreen");
+            },
             child: Padding(
-              padding: const EdgeInsets.only(top: 2.0),
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: listingCardList.length,
-                  itemBuilder: (context, int index) {
-                    return InkWell(
-                        onTap: () {},
-                        child:
-                            ListingCard(listingCard: listingCardList[index]));
-                  }),
+              padding: const EdgeInsets.only(right: 24.0),
+              child: Icon(
+                Icons.vpn_key,
+                color: iconColour,
+              ),
             ),
           ),
         ],
+        title: Text(
+          "Area",
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: textHeaderColour),
+        ),
+        centerTitle: true,
       ),
-    ));
+      body: Container(
+        color: backgroundColour,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 2.0),
+          child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: listingCardList.length,
+              itemBuilder: (context, int index) {
+                return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "VenueDetailsScreen",
+                          arguments: listingCardList[index]);
+                    },
+                    splashColor: buttonColour,
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: ListingCard(listingCard: listingCardList[index]));
+              }),
+        ),
+      ),
+    );
   }
 
 //  bool listFilter({String venueArea, String areaDiscriminator}) {

@@ -1,9 +1,17 @@
 import 'package:bzoozle/settings/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import '../models/listing_card_model.dart';
 import '../settings/colours.dart';
+
+/*This is the listing card template
+Purpose: To display high level details for each venue to help the user select
+ which to explore further by clicking on a card to take them to the full details.
+ A long press on a particular section of the card take the user to the edit
+ screen, enabling them to update that information for that venue.
+Input parameters: listingCard objects*/
 
 class ListingCard extends StatelessWidget {
   const ListingCard({Key key, this.listingCard}) : super(key: key);
@@ -13,10 +21,15 @@ class ListingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var now = DateTime.now();
     var today = now.weekday;
-    String openingTime = nextOpeningTime(today: today);
-    String closingTime = nextClosingTime(today: today);
-//    String nextHHStart;
-//    String nextHHEnd;
+    String openingTime1 = nextOpeningTime(today: today, session: 1);
+    String closingTime1 = nextClosingTime(today: today, session: 1);
+    String openingTime2 = nextOpeningTime(today: today, session: 2);
+    String closingTime2 = nextClosingTime(today: today, session: 2);
+    var nextHH = nextHappyHour();
+    dynamic nextHHStart =
+        (nextHH == "N/A") ? "N/A" : DateTime.parse(nextHH.split(",")[0]);
+    dynamic nextHHEnd =
+        (nextHH == "N/A") ? "N/A" : DateTime.parse(nextHH.split(",")[1]);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
@@ -31,72 +44,69 @@ class ListingCard extends StatelessWidget {
           elevation: 16.0,
           borderOnForeground: true,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
+            children: <Widget>[
               Flexible(
-                flex: 4,
+                flex: 12,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Flexible(
-                      flex: 5,
+                      flex: 30,
                       child: Stack(
                         children: <Widget>[
                           ClipRRect(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10.0),
                             ),
-                            child: Image(
-                              image: AssetImage(listingCard.venueImage),
-                              fit: BoxFit.cover,
-                              height: cardSize / 5 * 4,
-                              width: double.infinity,
+                            child: Hero(
+                              tag: listingCard.venueImage,
+                              child: Image(
+                                image: AssetImage(listingCard.venueImage),
+                                fit: BoxFit.cover,
+                                height: cardSize / 5 * 4,
+                                width: double.infinity,
+                              ),
                             ),
                           ),
-                          Positioned(
-                            bottom: 00.00,
-                            child: Container(
-//                        width: double.infinity,
-                              height: 45.00,
-                              alignment: Alignment.bottomCenter,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
-                                    colors: [
-                                      fadeColourDark,
-                                      transparentColour
-                                    ]),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 8.0,
-                                    bottom: 2.0,
-                                    left: 8.0,
-                                    right: 8.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      listingCard.venueName,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: orangeText,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      listingCard.venueLocation,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: orangeText,
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
+                          Container(
+                            // width: double.infinity,
+                            alignment: Alignment.bottomLeft,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    fadeColourDark,
+                                    transparentColour,
+                                    transparentColour,
+                                    transparentColour
+                                  ]),
+                            ),
+
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 8.0, bottom: 2.0, left: 8.0, right: 8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    listingCard.venueName,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: orangeText,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    listingCard.venueLocation,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: orangeText,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -104,119 +114,109 @@ class ListingCard extends StatelessWidget {
                       ),
                     ),
                     Flexible(
-                      flex: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0, vertical: 2.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              listingCard.venueGoodFor1,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: orangeText),
-                            ),
-                            Text(
-                              listingCard.venueGoodFor2,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: orangeText),
-                            ),
-                            Text(
-                              listingCard.venueGoodFor3,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: orangeText),
-                            ),
-                            Text(
-                              listingCard.venueGoodFor4,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: orangeText),
-                            ),
-                            Text(
-                              listingCard.venueGoodFor5,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.normal,
-                                  color: orangeText),
-                            ),
-                          ],
-                        ),
+                      flex: 10,
+                      child: Column(
+                        children: <Widget>[
+                          Expanded(
+                            child: timeBoxOpenToday(
+                                today: now,
+                                openTime1: openingTime1,
+                                openTime2: openingTime2,
+                                closeTime1: closingTime1,
+                                closeTime2: closingTime2),
+                          ),
+                          Expanded(
+                            child: timeBoxNextHappyHour(
+                                today: now,
+                                nextHHStart: nextHHStart,
+                                nextHHEnd: nextHHEnd),
+                          ),
+                          Expanded(
+                            child: timeBoxHHCountdown(
+                                today: now,
+                                nextHHStart: nextHHStart,
+                                nextHHEnd: nextHHEnd),
+                          ),
+                          Expanded(
+                            child: timeBoxDistance(
+                                distance: listingCard.venueDistance),
+                          ),
+                          Expanded(
+                            child: timeBoxPrice(
+                                regularPrice: listingCard.venueRegPrice,
+                                hHPrice: listingCard.venueHHPrice),
+                          ),
+                        ],
                       ),
                     ),
-//                      Flexible(
-//                        flex: 2,
-//                        child: Column(
-//                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                          crossAxisAlignment: CrossAxisAlignment.center,
-//                          children: <Widget>[
-//                            sideBox(
-//                                headerText: "Open Today",
-//                                mainText: "$openingTime - $closingTime",
-//                                backgroundColour: indicator3,
-//                                cornerRound: 10.0),
-//                            sideBox(
-//                                headerText: "Next Happy Hour",
-//                                mainText: "$openingTime - $closingTime",
-//                                backgroundColour: indicator3,
-//                                cornerRound: 0.0),
-//                            sideBox(
-//                                headerText: "HH starts:",
-//                                mainText: "$openingTime - $closingTime",
-//                                backgroundColour: indicator3,
-//                                cornerRound: 0.0),
-//                            sideBox(
-//                                headerText: "Distance",
-//                                mainText: "$openingTime - $closingTime",
-//                                backgroundColour: indicator3,
-//                                cornerRound: 0.0),
-//                          ],
-//                        ),
-//                      ),
                   ],
                 ),
               ),
               Flexible(
-                flex: 1,
+                flex: 2,
                 child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    timeBox(
-                        headerText: "Open Today",
-                        mainText: "$openingTime-$closingTime",
-                        backgroundColour: indicator3,
-                        cornerRound: 10.0),
-                    timeBox(
-                        headerText: "Next Happy Hour",
-                        mainText: "$openingTime-$closingTime",
-                        backgroundColour: indicator3,
-                        cornerRound: 0.0),
-                    timeBox(
-                        headerText: "HH starts:",
-                        mainText: "$openingTime-$closingTime",
-                        backgroundColour: indicator3,
-                        cornerRound: 0.0),
-                    timeBox(
-                        headerText: "Distance",
-                        mainText: "$openingTime-$closingTime",
-                        backgroundColour: indicator3,
-                        cornerRound: 0.0),
-                    timeBox(
-                        headerText: "Price",
-                        mainText: "$openingTime-$closingTime",
-                        backgroundColour: indicator3,
-                        cornerRound: 0.0),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: indicatorSymbol(
+                              indicatorSymbol: listingCard.venueInOut),
+                          iconImage: "assets/icon_in_out.png"),
+                    ),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: "assets/green_square.png",
+                          iconImage: "assets/icon_views.png"),
+                    ),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: indicatorSymbol(
+                              indicatorSymbol: listingCard.venueFood),
+                          iconImage: "assets/icon_food.png"),
+                    ),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: indicatorSymbol(
+                              indicatorSymbol: listingCard.venueSmoking),
+                          iconImage: "assets/icon_smoking.png"),
+                    ),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: indicatorSymbol(
+                              indicatorSymbol: listingCard.venueRecMusic),
+                          iconImage: "assets/icon_recorded_music.png"),
+                    ),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: indicatorSymbol(
+                              indicatorSymbol: listingCard.venueLiveEnt),
+                          iconImage: "assets/icon_live_ent.png"),
+                    ),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: indicatorSymbol(
+                              indicatorSymbol: listingCard.venueCCharge),
+                          iconImage: "assets/icon_cover.png"),
+                    ),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: indicatorSymbol(
+                              indicatorSymbol: listingCard.venueDressCode),
+                          iconImage: "assets/icon_dresscode.png"),
+                    ),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: indicatorSymbol(
+                              indicatorSymbol: listingCard.venueChildPolicy),
+                          iconImage: "assets/icon_child.png"),
+                    ),
+                    Expanded(
+                      child: facilityBox(
+                          indicatorSymbol: indicatorSymbol(
+                              indicatorSymbol: listingCard.venueAccessibility),
+                          iconImage: "assets/icon_accessibility.png"),
+                    ),
                   ],
                 ),
               ),
@@ -224,70 +224,44 @@ class ListingCard extends StatelessWidget {
                 flex: 1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    facilityBox(
-                        indicatorSymbol: indicatorSymbol(
-                            indicatorSymbol: listingCard.venueInOut),
-                        iconImage: "assets/icon_in_out.png",
-                        cornerL: 10.0,
-                        cornerR: 0.0),
-                    facilityBox(
-                        indicatorSymbol: "assets/green_square.png",
-                        iconImage: "assets/icon_views.png",
-                        cornerL: 0.0,
-                        cornerR: 0.0),
-                    facilityBox(
-                        indicatorSymbol: indicatorSymbol(
-                            indicatorSymbol: listingCard.venueFood),
-                        iconImage: "assets/icon_food.png",
-                        cornerL: 0.0,
-                        cornerR: 0.0),
-                    facilityBox(
-                        indicatorSymbol: indicatorSymbol(
-                            indicatorSymbol: listingCard.venueSmoking),
-                        iconImage: "assets/icon_smoking.png",
-                        cornerL: 0.0,
-                        cornerR: 0.0),
-                    facilityBox(
-                        indicatorSymbol: indicatorSymbol(
-                            indicatorSymbol: listingCard.venueRecMusic),
-                        iconImage: "assets/icon_recorded_music.png",
-                        cornerL: 0.0,
-                        cornerR: 0.0),
-                    facilityBox(
-                        indicatorSymbol: indicatorSymbol(
-                            indicatorSymbol: listingCard.venueLiveEnt),
-                        iconImage: "assets/icon_live_ent.png",
-                        cornerL: 0.0,
-                        cornerR: 0.0),
-                    facilityBox(
-                        indicatorSymbol: indicatorSymbol(
-                            indicatorSymbol: listingCard.venueCCharge),
-                        iconImage: "assets/icon_cover.png",
-                        cornerL: 0.0,
-                        cornerR: 0.0),
-                    facilityBox(
-                        indicatorSymbol: indicatorSymbol(
-                            indicatorSymbol: listingCard.venueDressCode),
-                        iconImage: "assets/icon_dresscode.png",
-                        cornerL: 0.0,
-                        cornerR: 0.0),
-                    facilityBox(
-                        indicatorSymbol: indicatorSymbol(
-                            indicatorSymbol: listingCard.venueChildPolicy),
-                        iconImage: "assets/icon_child.png",
-                        cornerL: 0.0,
-                        cornerR: 0.0),
-                    facilityBox(
-                        indicatorSymbol: indicatorSymbol(
-                            indicatorSymbol: listingCard.venueAccessibility),
-                        iconImage: "assets/icon_accessibility.png",
-                        cornerL: 0.0,
-                        cornerR: 10.0),
+                    Expanded(
+                      child: goodForText(goodFor: listingCard.venueGoodFor1),
+                    ),
+                    Expanded(
+                      child: goodForText(goodFor: listingCard.venueGoodFor2),
+                    ),
                   ],
                 ),
-              )
+              ),
+              Flexible(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: goodForText(goodFor: listingCard.venueGoodFor3),
+                    ),
+                    Expanded(
+                      child: goodForText(goodFor: listingCard.venueGoodFor4),
+                    ),
+                  ],
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: goodForText(goodFor: listingCard.venueGoodFor5),
+                    ),
+                    Expanded(
+                      child: goodForText(goodFor: listingCard.venueGoodFor6),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -295,172 +269,679 @@ class ListingCard extends StatelessWidget {
     );
   }
 
-  String nextOpeningTime({int today}) {
+  String nextOpeningTime({int today, int session}) {
+    /*  This function identifies and returns the opening times on the current
+    day, for each venue.
+    Input parameters: Current date & time, Session indicator (whether session 1 or 2)*/
+
+    //ToDo provide for opening hours that straddle midnight
     String openTime;
     switch (today) {
       case 1:
         {
-          openTime = listingCard.venueOpenMonday1;
+          if (session == 1) {
+            openTime = listingCard.venueOpenMonday1;
+          } else {
+            openTime = listingCard.venueOpenMonday2;
+          }
         }
         break;
       case 2:
         {
-          openTime = listingCard.venueOpenTuesday1;
+          if (session == 1) {
+            openTime = listingCard.venueOpenTuesday1;
+          } else {
+            openTime = listingCard.venueOpenTuesday2;
+          }
         }
         break;
       case 3:
         {
-          openTime = listingCard.venueOpenWednesday1;
+          if (session == 1) {
+            openTime = listingCard.venueOpenWednesday1;
+          } else {
+            openTime = listingCard.venueOpenWednesday2;
+          }
         }
         break;
       case 4:
         {
-          openTime = listingCard.venueOpenThursday1;
+          if (session == 1) {
+            openTime = listingCard.venueOpenThursday1;
+          } else {
+            openTime = listingCard.venueOpenThursday2;
+          }
         }
         break;
       case 5:
         {
-          openTime = listingCard.venueOpenFriday1;
+          if (session == 1) {
+            openTime = listingCard.venueOpenFriday1;
+          } else {
+            openTime = listingCard.venueOpenFriday2;
+          }
         }
         break;
       case 6:
         {
-          openTime = listingCard.venueOpenSaturday1;
+          if (session == 1) {
+            openTime = listingCard.venueOpenSaturday1;
+          } else {
+            openTime = listingCard.venueOpenSaturday2;
+          }
         }
         break;
       case 7:
         {
-          openTime = listingCard.venueOpenSunday1;
+          if (session == 1) {
+            openTime = listingCard.venueOpenSunday1;
+          } else {
+            openTime = listingCard.venueOpenSunday2;
+          }
         }
         break;
     }
+
     return openTime;
   }
 
-  String nextClosingTime({int today}) {
+  String nextClosingTime({int today, int session}) {
+    /*  This function identifies and returns the closing times on the current
+    day, for each venue.
+    Input parameters: Current date & time, Session indicator (whether session 1 or 2)*/
+
+    //ToDo provide for opening hours that straddle midnight
     String closeTime;
     switch (today) {
       case 1:
         {
-          closeTime = listingCard.venueCloseMonday1;
+          if (session == 1) {
+            closeTime = listingCard.venueCloseMonday1;
+          } else {
+            closeTime = listingCard.venueCloseMonday2;
+          }
         }
         break;
       case 2:
         {
-          closeTime = listingCard.venueCloseTuesday1;
+          if (session == 1) {
+            closeTime = listingCard.venueCloseTuesday1;
+          } else {
+            closeTime = listingCard.venueCloseTuesday2;
+          }
         }
         break;
       case 3:
         {
-          closeTime = listingCard.venueCloseWednesday1;
+          if (session == 1) {
+            closeTime = listingCard.venueCloseWednesday1;
+          } else {
+            closeTime = listingCard.venueCloseWednesday2;
+          }
         }
         break;
       case 4:
         {
-          closeTime = listingCard.venueCloseThursday1;
+          if (session == 1) {
+            closeTime = listingCard.venueCloseThursday1;
+          } else {
+            closeTime = listingCard.venueCloseThursday2;
+          }
         }
         break;
       case 5:
         {
-          closeTime = listingCard.venueCloseFriday1;
+          if (session == 1) {
+            closeTime = listingCard.venueCloseFriday1;
+          } else {
+            closeTime = listingCard.venueCloseFriday2;
+          }
         }
         break;
       case 6:
         {
-          closeTime = listingCard.venueCloseSaturday1;
+          if (session == 1) {
+            closeTime = listingCard.venueCloseSaturday1;
+          } else {
+            closeTime = listingCard.venueCloseSaturday2;
+          }
         }
         break;
       case 7:
         {
-          closeTime = listingCard.venueCloseSunday1;
+          if (session == 1) {
+            closeTime = listingCard.venueCloseSunday1;
+          } else {
+            closeTime = listingCard.venueCloseSunday2;
+          }
         }
         break;
     }
     return closeTime;
   }
 
-  Widget timeBox(
-      {String headerText,
-      String mainText,
-      Color backgroundColour,
-      double cornerRound}) {
-    if (headerText == "Next Happy Hour") {
-      String nextHH = nextHappyHour();
-      if (nextHH == "N/A") {
-        mainText = "N/A";
+  Widget timeBoxOpenToday({DateTime today,
+    String openTime1,
+    String closeTime1,
+    String openTime2,
+    String closeTime2}) {
+    /*  This function returns the custom widget that displays the opening times
+    on the current day, for each venue.
+    Input parameters: Current date & time, Session 1 opening date & time,
+    Session 1 closing date & time, Session 2 opening date & time,
+    Session 1 closing date & time*/
+
+    //ToDo provide for happy hours that straddle midnight
+    //ToDo incorporate the problem of opening times straddling midnight
+    String times1 = (openTime1 == "") ? "CLOSED" : "$openTime1-$closeTime1";
+    String times2 = (openTime2 == "") ? "" : "$openTime2-$closeTime2";
+    dynamic openFullDate1 = (openTime1 == "")
+        ? ""
+        : DateTime.parse(
+        "${today.year.toString()}-${today.month.toString().padLeft(
+            2, "0")}-${today.day.toString().padLeft(2, "0")} ${openTime1.split(
+            ":")[0]}:${openTime1.split(":")[1]}:00");
+    dynamic openFullDate2 = (openTime2 == "")
+        ? ""
+        : DateTime.parse(
+        "${today.year.toString()}-${today.month.toString().padLeft(
+            2, "0")}-${today.day.toString().padLeft(2, "0")} ${openTime2.split(
+            ":")[0]}:${openTime2.split(":")[1]}:00");
+    dynamic closeFullDate1 = (openTime1 == "")
+        ? ""
+        : DateTime.parse(
+        "${today.year.toString()}-${today.month.toString().padLeft(
+            2, "0")}-${today.day.toString().padLeft(2, "0")} ${closeTime1.split(
+            ":")[0]}:${closeTime1.split(":")[1]}:00");
+    dynamic closeFullDate2 = (openTime2 == "")
+        ? ""
+        : DateTime.parse(
+        "${today.year.toString()}-${today.month.toString().padLeft(
+            2, "0")}-${today.day.toString().padLeft(2, "0")} ${closeTime2.split(
+            ":")[0]}:${closeTime2.split(":")[1]}:00");
+
+    Color containerColour;
+    String headerText = "Open Today";
+// if the venue is closed all day set the background colour to red
+    if (times1 == "CLOSED") {
+      containerColour = indicator3;
+      headerText = "Closed Today";
+      // if the venue is open all day set the background colour to green
+    } else if (openTime1 == "00:00" && closeTime1 == "00:00") {
+      containerColour = indicator1;
+      // if the venue has only 1 open session...
+    } else if (times2 == "") {
+      // if the current time is before 30 mins before opening time OR after
+      // closing time set the background colour to red
+      if (today.isBefore(openFullDate1.add(Duration(minutes: -30))) ||
+          today.isAfter(closeFullDate1)) {
+        containerColour = indicator3;
+        // if the current time is after opening time and
+        // before 30 mins before closing time set the background colour to green
+      } else if (today.isAfter(openFullDate1) &&
+          today.isBefore(closeFullDate1.add(Duration(minutes: -30)))) {
+        containerColour = indicator1;
+        // Otherwise set the background colour to orange
       } else {
-        DateTime nextHHStart = DateTime.parse(nextHH.split(",")[0]);
-        DateTime nextHHEnd = DateTime.parse(nextHH.split(",")[1]);
-        mainText =
-            "${nextHHStart.hour.toString()}:${nextHHStart.minute.toString().padRight(2, "0")}-${nextHHEnd.hour.toString()}:${nextHHEnd.minute.toString().padRight(2, "0")}";
-        String Test = "BOB";
-//        mainText =
-//            "${nextHHStart.weekday.toString()} \n ${nextHHStart.hour.toString()}:${nextHHStart.minute.toString()}-${nextHHEnd.hour.toString()}:${nextHHEnd.minute.toString()}";
+        containerColour = indicator2;
+      }
+      // if the venue has 2 opening sessions...
+    } else {
+      // if the current time is before 30 mins before session 1 opening time OR
+      // the current time is after session 1 closing time AND
+      // before 30 mins before opening session 1 OR
+      // current time is after session 2 close time, set the background colour to red
+      if (today.isBefore(openFullDate1.add(Duration(minutes: -30))) ||
+          today.isAfter(closeFullDate1) &&
+              today.isBefore(openFullDate2.add(Duration(minutes: -30))) ||
+          today.isAfter(closeFullDate2)) {
+        containerColour = indicator3;
+        // if the current time is after session 1 opening time AND
+        // before 30 mins before session 1 closing time OR
+        // the current time is after session 2 opening time AND
+        // before 30 mins before session 2 close time, set the background colour to green
+      } else if (today.isAfter(openFullDate1) &&
+          today.isBefore(closeFullDate1.add(Duration(minutes: -30))) ||
+          today.isAfter(openFullDate2) &&
+              today.isBefore(closeFullDate2.add(Duration(minutes: -30)))) {
+        containerColour = indicator1;
+        //Set the background colour to orange between 30 mins before opening times AND
+        // opening time, and between 30 mins before closing times and closing times.
+      } else {
+        containerColour = indicator2;
       }
     }
-    return Expanded(
-      child: Stack(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-                color: backgroundColour,
-                border: Border.all(color: borderColour)),
-          ),
-          Positioned(
-            top: 00.00,
-            child: Container(
-//                            width: double.infinity,
-              height: 20.00,
-              alignment: Alignment.topCenter,
-              decoration: BoxDecoration(
-                borderRadius:
-                BorderRadius.only(topRight: Radius.circular(cornerRound)),
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [fadeColour, transparentColour]),
-              ),
-            ),
-          ),
-          Center(
-            child: Column(
-              children: <Widget>[
-                Text(
+    return Stack(
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+              color: containerColour,
+              borderRadius: BorderRadius.only(topRight: Radius.circular(10.0)),
+              border: Border.all(color: borderColour)),
+        ),
+        Column(
+          children: <Widget>[
+            Flexible(
+              flex: 30,
+              child: Container(
+                child: Text(
                   headerText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 8.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
                 ),
-                Text(
-                  mainText,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
-      ),
+            Flexible(
+              flex: times2 == "" ? 70 : 35,
+              child: Container(
+                child: Center(
+                  child: Text(
+                    times1,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 14.0,
+                        height: 0.9,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+            ),
+            (times2 == "")
+                ? Container()
+                : Flexible(
+              flex: 35,
+              child: Container(
+                child: Center(
+                  child: Text(
+                    times2,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 14.0,
+                        height: 0.9,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
-  Widget facilityBox({String indicatorSymbol,
-    String iconImage,
-    double cornerL,
-    double cornerR}) {
-    return Expanded(
-      child: Container(
-        height: cardSize / 5,
-        alignment: Alignment.topCenter,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(cornerL),
-                bottomRight: Radius.circular(cornerR)),
-            color: backgroundColour,
-            border: Border.all(color: borderColour)),
-        child: Stack(
+  Widget timeBoxNextHappyHour(
+      {DateTime today, dynamic nextHHStart, dynamic nextHHEnd}) {
+    /*  This function returns the custom widget that displays the day and times
+    of the next happy hour for each venue.
+    Input parameters: Current date & time, next happy hour start date & time,
+    next happy hour end date & time*/
+
+    //ToDo provide for happy hours that straddle midnight
+    //ToDo Change text 'Today' to variable day of the week
+    Color containerColour = indicator1;
+    String mainText = (nextHHStart == "N/A")
+        ? "N/A"
+        : "${nextHHStart.hour.toString().padLeft(2, "0")}:${nextHHStart.minute
+        .toString().padLeft(2, "0")}-${nextHHEnd.hour.toString().padLeft(
+        2, "0")}:${nextHHEnd.minute.toString().padLeft(2, "0")}";
+    return Stack(
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+              color: containerColour, border: Border.all(color: borderColour)),
+        ),
+        Center(
+          child: Column(
+            children: <Widget>[
+              Flexible(
+                flex: 30,
+                child: Container(
+                  child: Text(
+                    "Next Happy Hour",
+                    textAlign: TextAlign.center,
+                    style:
+                    TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 20,
+                child: Container(
+                  child: Text(
+                    "Today",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 8.0,
+                        height: 0.9,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 50,
+                child: Container(
+                  child: Center(
+                    child: Text(
+                      mainText,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 14.0,
+                          height: 0.9,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget timeBoxHHCountdown(
+      {DateTime today, dynamic nextHHStart, dynamic nextHHEnd}) {
+    /*  This function returns the custom widget that displays the countdown
+    clock for the next happy hour for each venue.  This currently displays dummy
+    data, but the intention is to activate a countdown clock
+    Input parameters: Current date & time, next happy hour start date & time,
+    next happy hour end date & time*/
+
+    //ToDo Get countdown clock working
+
+    Color containerColour = indicator1;
+    return Stack(
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+              color: containerColour, border: Border.all(color: borderColour)),
+        ),
+        Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(2.0),
+            Flexible(
+              flex: 30,
+              child: Container(
+                child: Center(
+                  child: Text(
+                    "HH Countdown",
+                    textAlign: TextAlign.center,
+                    style:
+                    TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
+                  ),
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 20,
+              child: Container(
+                child: Text(
+                  "  D       H      M      S",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 8.0, height: 0.9, fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 50,
+              child: Container(
+                child: Center(
+                  child: Text(
+                    "00:03:02:31",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 14.0,
+                        height: 0.9,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget timeBoxDistance({String distance}) {
+    /*  This function returns the custom widget that displays the distance
+    for each venue.  This currently displays dummy data, but the intention is to
+    use live data via a map api, probably Google Maps
+    Input parameters: Distance*/
+    //ToDo  obtain and display distance data from api (Google Maps)
+    Color containerColour = indicator1;
+    return Stack(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+                color: containerColour,
+                border: Border.all(color: borderColour)),
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                flex: 30,
+                child: Container(
+                  child: Text(
+                    "Distance",
+                    textAlign: TextAlign.center,
+                    style:
+                    TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 40,
+                child: Container(
+                  child: Center(
+                    child: Text(
+                      "0.63",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 14.0,
+                          height: 0.9,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 20,
+                child: Container(
+                  child: Center(
+                    child: Text(
+                      "miles",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 10.0,
+                          height: 0.9,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget timeBoxPrice({int regularPrice, int hHPrice}) {
+/*  This function returns the custom widget that displays the relative price
+    indicators for regular prices and happy hour prices
+    Input parameters: relative price indicators for regular and happy hour prices*/
+    //ToDo Expand $ row to fill the container
+
+    Color containerColour = indicator1;
+    return Stack(
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+              color: containerColour, border: Border.all(color: borderColour)),
+        ),
+        Column(
+          children: <Widget>[
+            Container(
+              child: Text(
+                "Price",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w800),
+              ),
+            ),
+            Expanded(
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: containerColour,
+                          border: Border.all(color: borderColour)),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding:
+                            const EdgeInsets.only(top: 1.0, bottom: 2.0),
+                            child: Text(
+                              "Reg",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 8.0,
+                                  height: 0.9,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          Center(
+                            child: RichText(
+                              text: TextSpan(
+                                text: "\$",
+                                style: TextStyle(
+                                    color: textColour,
+                                    fontSize: 14.0,
+                                    height: 0.9,
+                                    fontWeight: FontWeight.w500),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: "\$",
+                                      style: TextStyle(
+                                          color: (regularPrice >= 2)
+                                              ? textColour
+                                              : reverseTextColour)),
+                                  TextSpan(
+                                      text: "\$",
+                                      style: TextStyle(
+                                          color: (regularPrice >= 3)
+                                              ? textColour
+                                              : reverseTextColour)),
+                                  TextSpan(
+                                      text: "\$",
+                                      style: TextStyle(
+                                          color: (regularPrice >= 4)
+                                              ? textColour
+                                              : reverseTextColour)),
+                                  TextSpan(
+                                      text: "\$",
+                                      style: TextStyle(
+                                          color: (regularPrice >= 5)
+                                              ? textColour
+                                              : reverseTextColour)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: containerColour,
+                          border: Border.all(color: borderColour)),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding:
+                            const EdgeInsets.only(top: 1.0, bottom: 2.0),
+                            child: Text(
+                              "HH",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 8.0,
+                                  height: 0.9,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          Center(
+                            child: RichText(
+                              text: TextSpan(
+                                text: "\$",
+                                style: TextStyle(
+                                    color: textColour,
+                                    fontSize: 14.0,
+                                    height: 0.9,
+                                    fontWeight: FontWeight.w500),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: "\$",
+                                      style: TextStyle(
+                                          color: (hHPrice >= 2)
+                                              ? textColour
+                                              : reverseTextColour)),
+                                  TextSpan(
+                                      text: "\$",
+                                      style: TextStyle(
+                                          color: (hHPrice >= 3)
+                                              ? textColour
+                                              : reverseTextColour)),
+                                  TextSpan(
+                                      text: "\$",
+                                      style: TextStyle(
+                                          color: (hHPrice >= 4)
+                                              ? textColour
+                                              : reverseTextColour)),
+                                  TextSpan(
+                                      text: "\$",
+                                      style: TextStyle(
+                                          color: (hHPrice >= 5)
+                                              ? textColour
+                                              : reverseTextColour)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget facilityBox({String indicatorSymbol, String iconImage}) {
+/*  This function returns a stacked image for each of the 10 facility indicator
+    symbols
+    Input parameters: background image and icon image*/
+    return Container(
+      height: cardSize / 5,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: backgroundColour, border: Border.all(color: borderColour)),
+      child: Stack(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Center(
               child: Image(
                 image: AssetImage(indicatorSymbol),
                 fit: BoxFit.cover,
@@ -468,22 +949,27 @@ class ListingCard extends StatelessWidget {
 //              height: double.infinity,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(4.0),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Center(
               child: Image(
                 image: AssetImage(iconImage),
-                fit: BoxFit.cover,
+                fit: BoxFit.fitHeight,
                 width: double.infinity,
                 height: double.infinity,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   String indicatorSymbol({String indicatorSymbol}) {
+/*  This function assigns the correct background image for each of the facility
+    indicator symbols, either a green square, orange octagon, or red circle
+    Input parameters: indicatorSymbol*/
     String returnSymbol;
     switch (indicatorSymbol) {
       case "1":
@@ -506,6 +992,10 @@ class ListingCard extends StatelessWidget {
   }
 
   String nextHappyHour() {
+    /* This function uses the current date and time to calculate the happy hours
+    for the coming week by producing a sorted list and returns a string
+    consisting of the dates and opening and closing times of the next happy hour
+    Input parameters: none*/
     String nextHHTime = "N/A";
     List<dynamic> startHHList = List<dynamic>();
     List<dynamic> endHHList = List<dynamic>();
@@ -921,5 +1411,27 @@ class ListingCard extends StatelessWidget {
     }
 
     return nextHHTime;
+  }
+
+  Widget goodForText({String goodFor}) {
+/*  This function produces each of the 6 text bullet points at the foot of the
+    card, highlighting the major selling points of each venue
+    Input parameters: the text to be displayed*/
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+          child: Text(
+            goodFor,
+//            textAlign: TextAlign.start,
+            style: TextStyle(
+                fontSize: 12.0,
+                fontWeight: FontWeight.normal,
+                color: orangeText),
+          ),
+        ),
+      ),
+    );
   }
 }
