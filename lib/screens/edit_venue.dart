@@ -1,7 +1,6 @@
 import 'package:bzoozle/lists/venue_edit_headers.dart';
 import 'package:bzoozle/templates/venue_edit_button.dart';
 import 'package:flutter/material.dart';
-import 'package:bzoozle/settings/colours.dart';
 
 class EditVenueScreen extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: backgroundColour,
+        //color: backgroundColour,
         child: Padding(
           padding: const EdgeInsets.only(
             top: 2.0,

@@ -1,4 +1,5 @@
 import 'package:bzoozle/screens/share_bzoozle.dart';
+import 'package:bzoozle/settings/myTheme.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/account.dart';
@@ -18,9 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "BZOOZLE",
-      theme: ThemeData(
-        brightness: Brightness.light,
-      ),
+      theme: MyTheme().buildTheme(),
       initialRoute: "MainMenu",
       routes: {
         "MainMenu": (context) => MainMenuScreen(),

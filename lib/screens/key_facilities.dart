@@ -1,6 +1,6 @@
 import 'package:bzoozle/lists/key_list.dart';
 import 'package:bzoozle/models/key_model.dart';
-import 'package:bzoozle/settings/colours.dart';
+import 'package:bzoozle/settings/myTheme.dart';
 import 'package:bzoozle/templates/key_facilities_card.dart';
 import 'package:flutter/material.dart';
 
@@ -15,19 +15,19 @@ class _KeyFacilitiesScreenState extends State<KeyFacilitiesScreen> {
     List<List<KeySymbolClass>> categoryContentsList = createListOfLists();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appBarColour,
+        //backgroundColor: appBarColour,
         iconTheme: IconThemeData(color: iconColour),
         title: Text(
           "Key To Facilities Symbols",
-          style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: textHeaderColour),
+          style: Theme
+              .of(context)
+              .textTheme
+              .headline2,
         ),
         centerTitle: true,
       ),
       body: Container(
-        color: backgroundColour,
+        //color: backgroundColour,
         child: Padding(
           padding: const EdgeInsets.only(top: 2.0),
           child: ListView.builder(

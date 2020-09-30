@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../models/listing_card_model.dart';
-import '../settings/colours.dart';
+import '../models/venue_model.dart';
+import '../settings/myTheme.dart';
 
 /*This is the listing card template
 Purpose: To display high level details for each venue to help the user select
@@ -15,7 +15,7 @@ Input parameters: listingCard objects*/
 
 class ListingCard extends StatelessWidget {
   const ListingCard({Key key, this.listingCard}) : super(key: key);
-  final ListingCardClass listingCard;
+  final VenueClass listingCard;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,6 @@ class ListingCard extends StatelessWidget {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
               side: BorderSide(color: borderColour, width: 1.0)),
-          color: backgroundColour,
           elevation: 16.0,
           borderOnForeground: true,
           child: Column(
@@ -76,7 +75,8 @@ class ListingCard extends StatelessWidget {
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.topCenter,
                                   colors: [
-                                    fadeColourDark,
+                                    fadeColour,
+                                    transparentColour,
                                     transparentColour,
                                     transparentColour,
                                     transparentColour
@@ -93,18 +93,17 @@ class ListingCard extends StatelessWidget {
                                   Text(
                                     listingCard.venueName,
                                     textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        color: orangeText,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
+                                    style:
+                                        Theme.of(context).textTheme.headline4,
                                   ),
                                   Text(
                                     listingCard.venueLocation,
                                     textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        color: orangeText,
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.bold),
+                                    style:
+                                    Theme
+                                        .of(context)
+                                        .textTheme
+                                        .bodyText2,
                                   ),
                                 ],
                               ),
@@ -144,7 +143,10 @@ class ListingCard extends StatelessWidget {
                           Expanded(
                             child: timeBoxPrice(
                                 regularPrice: listingCard.venueRegPrice,
-                                hHPrice: listingCard.venueHHPrice),
+                                hHPrice: listingCard.venueHHPrice,
+                                textTheme: Theme
+                                    .of(context)
+                                    .textTheme),
                           ),
                         ],
                       ),
@@ -222,16 +224,27 @@ class ListingCard extends StatelessWidget {
               ),
               Flexible(
                 flex: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Expanded(
-                      child: goodForText(goodFor: listingCard.venueGoodFor1),
-                    ),
-                    Expanded(
-                      child: goodForText(goodFor: listingCard.venueGoodFor2),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Expanded(
+                        child: goodForText(
+                            goodFor: listingCard.venueGoodForTitle1,
+                            textTheme: Theme
+                                .of(context)
+                                .textTheme),
+                      ),
+                      Expanded(
+                        child: goodForText(
+                            goodFor: listingCard.venueGoodForTitle2,
+                            textTheme: Theme
+                                .of(context)
+                                .textTheme),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Flexible(
@@ -240,26 +253,45 @@ class ListingCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
-                      child: goodForText(goodFor: listingCard.venueGoodFor3),
+                      child: goodForText(
+                          goodFor: listingCard.venueGoodForTitle3,
+                          textTheme: Theme
+                              .of(context)
+                              .textTheme),
                     ),
                     Expanded(
-                      child: goodForText(goodFor: listingCard.venueGoodFor4),
+                      child: goodForText(
+                          goodFor: listingCard.venueGoodForTitle4,
+                          textTheme: Theme
+                              .of(context)
+                              .textTheme),
                     ),
                   ],
                 ),
               ),
               Flexible(
                 flex: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: goodForText(goodFor: listingCard.venueGoodFor5),
-                    ),
-                    Expanded(
-                      child: goodForText(goodFor: listingCard.venueGoodFor6),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: goodForText(
+                            goodFor: listingCard.venueGoodForTitle5,
+                            textTheme: Theme
+                                .of(context)
+                                .textTheme),
+                      ),
+                      Expanded(
+                        child: goodForText(
+                            goodFor: listingCard.venueGoodForTitle6,
+                            textTheme: Theme
+                                .of(context)
+                                .textTheme),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -771,7 +803,7 @@ class ListingCard extends StatelessWidget {
     );
   }
 
-  Widget timeBoxPrice({int regularPrice, int hHPrice}) {
+  Widget timeBoxPrice({int regularPrice, int hHPrice, TextTheme textTheme}) {
 /*  This function returns the custom widget that displays the relative price
     indicators for regular prices and happy hour prices
     Input parameters: relative price indicators for regular and happy hour prices*/
@@ -820,36 +852,32 @@ class ListingCard extends StatelessWidget {
                             child: RichText(
                               text: TextSpan(
                                 text: "\$",
-                                style: TextStyle(
-                                    color: textColour,
-                                    fontSize: 14.0,
-                                    height: 0.9,
-                                    fontWeight: FontWeight.w500),
+                                style: textTheme.subtitle1,
                                 children: <TextSpan>[
                                   TextSpan(
                                       text: "\$",
                                       style: TextStyle(
                                           color: (regularPrice >= 2)
-                                              ? textColour
-                                              : reverseTextColour)),
+                                              ? dollarColour
+                                              : reverseDollarColour)),
                                   TextSpan(
                                       text: "\$",
                                       style: TextStyle(
                                           color: (regularPrice >= 3)
-                                              ? textColour
-                                              : reverseTextColour)),
+                                              ? dollarColour
+                                              : reverseDollarColour)),
                                   TextSpan(
                                       text: "\$",
                                       style: TextStyle(
                                           color: (regularPrice >= 4)
-                                              ? textColour
-                                              : reverseTextColour)),
+                                              ? dollarColour
+                                              : reverseDollarColour)),
                                   TextSpan(
                                       text: "\$",
                                       style: TextStyle(
                                           color: (regularPrice >= 5)
-                                              ? textColour
-                                              : reverseTextColour)),
+                                              ? dollarColour
+                                              : reverseDollarColour)),
                                 ],
                               ),
                             ),
@@ -882,7 +910,7 @@ class ListingCard extends StatelessWidget {
                               text: TextSpan(
                                 text: "\$",
                                 style: TextStyle(
-                                    color: textColour,
+                                    color: dollarColour,
                                     fontSize: 14.0,
                                     height: 0.9,
                                     fontWeight: FontWeight.w500),
@@ -891,26 +919,26 @@ class ListingCard extends StatelessWidget {
                                       text: "\$",
                                       style: TextStyle(
                                           color: (hHPrice >= 2)
-                                              ? textColour
-                                              : reverseTextColour)),
+                                              ? dollarColour
+                                              : reverseDollarColour)),
                                   TextSpan(
                                       text: "\$",
                                       style: TextStyle(
                                           color: (hHPrice >= 3)
-                                              ? textColour
-                                              : reverseTextColour)),
+                                              ? dollarColour
+                                              : reverseDollarColour)),
                                   TextSpan(
                                       text: "\$",
                                       style: TextStyle(
                                           color: (hHPrice >= 4)
-                                              ? textColour
-                                              : reverseTextColour)),
+                                              ? dollarColour
+                                              : reverseDollarColour)),
                                   TextSpan(
                                       text: "\$",
                                       style: TextStyle(
                                           color: (hHPrice >= 5)
-                                              ? textColour
-                                              : reverseTextColour)),
+                                              ? dollarColour
+                                              : reverseDollarColour)),
                                 ],
                               ),
                             ),
@@ -1413,7 +1441,7 @@ class ListingCard extends StatelessWidget {
     return nextHHTime;
   }
 
-  Widget goodForText({String goodFor}) {
+  Widget goodForText({String goodFor, TextTheme textTheme}) {
 /*  This function produces each of the 6 text bullet points at the foot of the
     card, highlighting the major selling points of each venue
     Input parameters: the text to be displayed*/
@@ -1424,11 +1452,7 @@ class ListingCard extends StatelessWidget {
           padding: const EdgeInsets.only(left: 8.0, right: 4.0),
           child: Text(
             goodFor,
-//            textAlign: TextAlign.start,
-            style: TextStyle(
-                fontSize: 12.0,
-                fontWeight: FontWeight.normal,
-                color: orangeText),
+            style: textTheme.bodyText2,
           ),
         ),
       ),

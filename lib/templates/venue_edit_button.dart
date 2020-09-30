@@ -2,7 +2,6 @@ import 'package:bzoozle/models/venue_header_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../settings/colours.dart';
 
 class VenueEditButton extends StatelessWidget {
   const VenueEditButton({Key key, this.venueEditButton}) : super(key: key);
@@ -14,8 +13,6 @@ class VenueEditButton extends StatelessWidget {
         onPressed: () {
           Navigator.pushNamed(context, venueEditButton.routerName);
         },
-        textColor: textColour,
-        color: buttonColour,
         elevation: 8.0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

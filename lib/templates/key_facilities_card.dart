@@ -1,7 +1,9 @@
-import 'package:bzoozle/models/key_model.dart';
-import 'package:bzoozle/settings/colours.dart';
-import 'package:bzoozle/settings/dimensions.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bzoozle/models/key_model.dart';
+import 'package:bzoozle/settings/dimensions.dart';
+
+import 'package:bzoozle/templates/myCard.dart';
 
 class KeyFacilitiesCard extends StatelessWidget {
   const KeyFacilitiesCard({Key key, this.categoryContents}) : super(key: key);
@@ -13,11 +15,7 @@ class KeyFacilitiesCard extends StatelessWidget {
       height: cardSize / 100 * 70,
       child: Padding(
         padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          color: categoryCardColour,
+        child: MyCard(
           child: Column(
             children: <Widget>[
               Padding(
@@ -25,15 +23,21 @@ class KeyFacilitiesCard extends StatelessWidget {
                     top: 10.0, bottom: 10.0, left: 8.0, right: 8.0),
                 child: Text(
                   categoryContents[0].symbolCategory,
-                  style: TextStyle(
-                      color: orangeText,
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline1,
                 ),
               ),
-              rowCard(listIndex: 0),
-              rowCard(listIndex: 1),
-              rowCard(listIndex: 2),
+              rowCard(listIndex: 0, textTheme: Theme
+                  .of(context)
+                  .textTheme),
+              rowCard(listIndex: 1, textTheme: Theme
+                  .of(context)
+                  .textTheme),
+              rowCard(listIndex: 2, textTheme: Theme
+                  .of(context)
+                  .textTheme),
             ],
           ),
         ),
@@ -41,11 +45,11 @@ class KeyFacilitiesCard extends StatelessWidget {
     );
   }
 
-  Widget rowCard({int listIndex}) {
+  Widget rowCard({int listIndex, TextTheme textTheme}) {
     return Container(
       child: Padding(
         padding:
-            const EdgeInsets.only(top: 4.0, bottom: 4.0, left: 4.0, right: 4.0),
+        const EdgeInsets.only(top: 4.0, bottom: 4.0, left: 4.0, right: 4.0),
         child: Container(
           height: cardSize / 100 * 12,
           child: Row(
@@ -67,7 +71,7 @@ class KeyFacilitiesCard extends StatelessWidget {
                           padding: const EdgeInsets.all(3.0),
                           child: Image(
                             image:
-                                AssetImage(categoryContents[listIndex].symbol),
+                            AssetImage(categoryContents[listIndex].symbol),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -82,7 +86,7 @@ class KeyFacilitiesCard extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 12.0, right: 8.0),
                     child: Text(
                       categoryContents[listIndex].symbolDescription,
-                      style: TextStyle(color: orangeText, fontSize: 16.0),
+                      style: textTheme.headline1,
                     ),
                   )),
             ],
@@ -91,4 +95,5 @@ class KeyFacilitiesCard extends StatelessWidget {
       ),
     );
   }
+
 }

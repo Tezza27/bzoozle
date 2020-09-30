@@ -1,10 +1,17 @@
 // This class provides the data to construct the cards on the listings screen
-class ListingCardClass {
-  const ListingCardClass({
+class VenueClass {
+  const VenueClass({
     this.venueID,
     this.venueName,
-    this.venueArea,
     this.venueLocation,
+    this.venueArea,
+    this.venueAddress1,
+    this.venueAddress2,
+    this.venueDistrict,
+    this.venueCity,
+    this.venuePostCode,
+    this.venueDirections,
+    this.venueDescription,
     this.venueImage,
     this.venueRegPrice,
     this.venueHHPrice,
@@ -18,12 +25,18 @@ class ListingCardClass {
     this.venueChildPolicy,
     this.venueAccessibility,
     this.venueDistance,
-    this.venueGoodFor1,
-    this.venueGoodFor2,
-    this.venueGoodFor3,
-    this.venueGoodFor4,
-    this.venueGoodFor5,
-    this.venueGoodFor6,
+    this.venueGoodForTitle1,
+    this.venueGoodForDescription1,
+    this.venueGoodForTitle2,
+    this.venueGoodForDescription2,
+    this.venueGoodForTitle3,
+    this.venueGoodForDescription3,
+    this.venueGoodForTitle4,
+    this.venueGoodForDescription4,
+    this.venueGoodForTitle5,
+    this.venueGoodForDescription5,
+    this.venueGoodForTitle6,
+    this.venueGoodForDescription6,
     this.venueOpenMonday1,
     this.venueOpenMonday2,
     this.venueOpenTuesday1,
@@ -84,8 +97,15 @@ class ListingCardClass {
 
   final String venueID;
   final String venueName;
-  final String venueArea;
   final String venueLocation;
+  final String venueArea;
+  final String venueAddress1;
+  final String venueAddress2;
+  final String venueDistrict;
+  final String venueCity;
+  final String venuePostCode;
+  final String venueDirections;
+  final String venueDescription;
   final String venueImage;
   final int venueRegPrice;
   final int venueHHPrice;
@@ -99,12 +119,18 @@ class ListingCardClass {
   final String venueChildPolicy;
   final String venueAccessibility;
   final String venueDistance;
-  final String venueGoodFor1;
-  final String venueGoodFor2;
-  final String venueGoodFor3;
-  final String venueGoodFor4;
-  final String venueGoodFor5;
-  final String venueGoodFor6;
+  final String venueGoodForTitle1;
+  final String venueGoodForDescription1;
+  final String venueGoodForTitle2;
+  final String venueGoodForDescription2;
+  final String venueGoodForTitle3;
+  final String venueGoodForDescription3;
+  final String venueGoodForTitle4;
+  final String venueGoodForDescription4;
+  final String venueGoodForTitle5;
+  final String venueGoodForDescription5;
+  final String venueGoodForTitle6;
+  final String venueGoodForDescription6;
   final String venueOpenMonday1;
   final String venueOpenMonday2;
   final String venueOpenTuesday1;

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:bzoozle/settings/dimensions.dart';
-import 'package:bzoozle/settings/colours.dart';
+import 'package:bzoozle/settings/myTheme.dart';
+import 'package:flutter/material.dart';
 
 class TimeDropdown extends StatefulWidget {
   const TimeDropdown({this.startValue, this.timeList});

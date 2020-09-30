@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../lists/venue_list.dart';
-import '../settings/colours.dart';
+import '../settings/myTheme.dart';
 import '../templates/listing_card.dart';
 
 /*This is the listings screen
@@ -40,7 +40,7 @@ class _ListingsState extends State<ListingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appBarColour,
+        backgroundColor: backgroundColour,
         iconTheme: IconThemeData(color: iconColour),
         actions: <Widget>[
           GestureDetector(
@@ -58,10 +58,7 @@ class _ListingsState extends State<ListingsScreen> {
         ],
         title: Text(
           "Area",
-          style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: textHeaderColour),
+          style: Theme.of(context).textTheme.headline2,
         ),
         centerTitle: true,
       ),
@@ -78,7 +75,7 @@ class _ListingsState extends State<ListingsScreen> {
                       Navigator.pushNamed(context, "VenueDetailsScreen",
                           arguments: listingCardList[index]);
                     },
-                    splashColor: buttonColour,
+                    splashColor: secondaryColour,
                     borderRadius: BorderRadius.circular(10.0),
                     child: ListingCard(listingCard: listingCardList[index]));
               }),
