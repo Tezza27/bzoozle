@@ -55,27 +55,28 @@ class VenueClass {
     this.venueCloseMonday2,
     this.venueCloseTuesday1,
     this.venueCloseTuesday2,
-    this.venueCloseWednesday1,
-    this.venueCloseWednesday2,
-    this.venueCloseThursday1,
-    this.venueCloseThursday2,
-    this.venueCloseFriday1,
-    this.venueCloseFriday2,
-    this.venueCloseSaturday1,
-    this.venueCloseSaturday2,
-    this.venueCloseSunday1,
-    this.venueCloseSunday2,
-    this.venueHHStartMonday1,
-    this.venueHHStartMonday2,
-    this.venueHHStartTuesday1,
-    this.venueHHStartTuesday2,
-    this.venueHHStartWednesday1,
-    this.venueHHStartWednesday2,
-    this.venueHHStartThursday1,
-    this.venueHHStartThursday2,
-    this.venueHHStartFriday1,
-    this.venueHHStartFriday2,
-    this.venueHHStartSaturday1,
+      this.venueCloseWednesday1,
+      this.venueCloseWednesday2,
+      this.venueCloseThursday1,
+      this.venueCloseThursday2,
+      this.venueCloseFriday1,
+      this.venueCloseFriday2,
+      this.venueCloseSaturday1,
+      this.venueCloseSaturday2,
+      this.venueCloseSunday1,
+      this.venueCloseSunday2,
+      this.venueOpeningTimesNotes,
+      this.venueHHStartMonday1,
+      this.venueHHStartMonday2,
+      this.venueHHStartTuesday1,
+      this.venueHHStartTuesday2,
+      this.venueHHStartWednesday1,
+      this.venueHHStartWednesday2,
+      this.venueHHStartThursday1,
+      this.venueHHStartThursday2,
+      this.venueHHStartFriday1,
+      this.venueHHStartFriday2,
+      this.venueHHStartSaturday1,
     this.venueHHStartSaturday2,
     this.venueHHStartSunday1,
     this.venueHHStartSunday2,
@@ -93,6 +94,8 @@ class VenueClass {
     this.venueHHEndSaturday2,
     this.venueHHEndSunday1,
     this.venueHHEndSunday2,
+    this.venueHHNotes1,
+    this.venueHHNotes2
   });
 
   final String venueID;
@@ -159,6 +162,7 @@ class VenueClass {
   final String venueCloseSaturday2;
   final String venueCloseSunday1;
   final String venueCloseSunday2;
+  final String venueOpeningTimesNotes;
   final String venueHHStartMonday1;
   final String venueHHStartMonday2;
   final String venueHHStartTuesday1;
@@ -187,4 +191,6 @@ class VenueClass {
   final String venueHHEndSaturday2;
   final String venueHHEndSunday1;
   final String venueHHEndSunday2;
+  final String venueHHNotes1;
+  final String venueHHNotes2;
 }
