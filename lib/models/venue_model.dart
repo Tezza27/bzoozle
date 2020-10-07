@@ -16,14 +16,25 @@ class VenueClass {
     this.venueRegPrice,
     this.venueHHPrice,
     this.venueInOut,
+    this.venueInOutNote,
+    this.venueViews,
+    this.venueViewsNote,
     this.venueFood,
+    this.venueFoodNote,
     this.venueSmoking,
+    this.venueSmokingNote,
     this.venueRecMusic,
+    this.venueRecMusicNote,
     this.venueLiveEnt,
+    this.venueLiveEntNote,
     this.venueCCharge,
+    this.venueCChargeNote,
     this.venueDressCode,
+    this.venueDressCodeNote,
     this.venueChildPolicy,
+    this.venueChildPolicyNote,
     this.venueAccessibility,
+    this.venueAccessibilityNote,
     this.venueDistance,
     this.venueGoodForTitle1,
     this.venueGoodForDescription1,
@@ -94,8 +105,7 @@ class VenueClass {
     this.venueHHEndSaturday2,
     this.venueHHEndSunday1,
     this.venueHHEndSunday2,
-    this.venueHHNotes1,
-    this.venueHHNotes2
+    this.venueHHNotes,
   });
 
   final String venueID;
@@ -113,14 +123,25 @@ class VenueClass {
   final int venueRegPrice;
   final int venueHHPrice;
   final String venueInOut;
+  final String venueInOutNote;
+  final String venueViews;
+  final String venueViewsNote;
   final String venueFood;
+  final String venueFoodNote;
   final String venueSmoking;
+  final String venueSmokingNote;
   final String venueRecMusic;
+  final String venueRecMusicNote;
   final String venueLiveEnt;
+  final String venueLiveEntNote;
   final String venueCCharge;
+  final String venueCChargeNote;
   final String venueDressCode;
+  final String venueDressCodeNote;
   final String venueChildPolicy;
+  final String venueChildPolicyNote;
   final String venueAccessibility;
+  final String venueAccessibilityNote;
   final String venueDistance;
   final String venueGoodForTitle1;
   final String venueGoodForDescription1;
@@ -191,6 +212,5 @@ class VenueClass {
   final String venueHHEndSaturday2;
   final String venueHHEndSunday1;
   final String venueHHEndSunday2;
-  final String venueHHNotes1;
-  final String venueHHNotes2;
+  final String venueHHNotes;
 }

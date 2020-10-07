@@ -1,6 +1,6 @@
+import 'package:bzoozle/lists/key_list.dart';
 import 'package:bzoozle/models/venue_model.dart';
 import 'package:bzoozle/settings/myTheme.dart';
-import 'package:bzoozle/templates/myCard.dart';
 import 'package:flutter/material.dart';
 
 /*This is the venue detail screen
@@ -16,7 +16,7 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final VenueClass venueDetails =
-        ModalRoute.of(context).settings.arguments as VenueClass;
+    ModalRoute.of(context).settings.arguments as VenueClass;
 
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +54,7 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
                 padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
                 child: Container(
                   width: double.infinity,
-                  child: MyCard(
+                  child: Card(
                     child: Padding(
                       padding: const EdgeInsets.only(
                           top: 10.0, bottom: 10.0, left: 8.0, right: 8.0),
@@ -65,92 +65,65 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
                                 bottom: 8.0, left: 8.0, right: 8.0),
                             child: Text(
                               "Where to Find Us:",
-                              style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .headline2,
+                              style: Theme.of(context).textTheme.headline2,
                             ),
                           ),
                           (venueDetails.venueLocation.length == 0)
                               ? SizedBox.shrink()
                               : Text(
-                            venueDetails.venueLocation,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .bodyText1,
-                          ),
+                                  venueDetails.venueLocation,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                           (venueDetails.venueAddress1.isEmpty)
                               ? SizedBox.shrink()
                               : Text(
-                            venueDetails.venueAddress1,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .bodyText1,
-                          ),
+                                  venueDetails.venueAddress1,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                           (venueDetails.venueAddress2.isEmpty)
                               ? SizedBox.shrink()
                               : Text(
-                            venueDetails.venueAddress2,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .bodyText1,
-                          ),
+                                  venueDetails.venueAddress2,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                           (venueDetails.venueArea.length == 0)
                               ? SizedBox.shrink()
                               : Text(
-                            venueDetails.venueArea,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .bodyText1,
-                          ),
+                                  venueDetails.venueArea,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                           (venueDetails.venueDistrict.length == 0)
                               ? SizedBox.shrink()
                               : Text(
-                            venueDetails.venueDistrict,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .bodyText1,
-                          ),
+                                  venueDetails.venueDistrict,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                           (venueDetails.venueCity.length == 0)
                               ? SizedBox.shrink()
                               : Text(
-                            venueDetails.venueCity,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .bodyText1,
-                          ),
+                                  venueDetails.venueCity,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                           (venueDetails.venuePostCode.length == 0)
                               ? SizedBox.shrink()
                               : Text(
-                            venueDetails.venuePostCode,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .bodyText1,
-                          ),
+                                  venueDetails.venuePostCode,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                           (venueDetails.venueDirections == null ||
-                              venueDetails.venueDirections.trim() == "")
+                                  venueDetails.venueDirections.trim() == "")
                               ? SizedBox.shrink()
                               : Padding(
-                            padding: const EdgeInsets.only(
-                                top: 8.0, bottom: 2.0),
-                            child: Text(
-                              venueDetails.venueDirections,
-                              softWrap: true,
-                              style:
-                              Theme
-                                  .of(context)
-                                  .textTheme
-                                  .bodyText1,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, bottom: 2.0),
+                                  child: Text(
+                                    venueDetails.venueDirections,
+                                    softWrap: true,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                         ],
                       ),
                     ),
@@ -368,6 +341,186 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+                child: Container(
+                  width: double.infinity,
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, bottom: 10.0, left: 8.0, right: 8.0),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 8.0, left: 8.0, right: 8.0),
+                            child: Text(
+                              "Happy Hours",
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .headline2,
+                            ),
+                          ),
+                          timesTable(
+                              monStart1: venueDetails.venueHHStartMonday1,
+                              monEnd1: venueDetails.venueHHEndMonday1,
+                              tueStart1: venueDetails.venueHHStartTuesday1,
+                              tueEnd1: venueDetails.venueHHEndTuesday1,
+                              wedStart1: venueDetails.venueHHStartWednesday1,
+                              wedEnd1: venueDetails.venueHHEndWednesday1,
+                              thuStart1: venueDetails.venueHHStartThursday1,
+                              thuEnd1: venueDetails.venueHHEndThursday1,
+                              friStart1: venueDetails.venueHHStartFriday1,
+                              friEnd1: venueDetails.venueHHEndFriday1,
+                              satStart1: venueDetails.venueHHStartSaturday1,
+                              satEnd1: venueDetails.venueHHEndSaturday1,
+                              sunStart1: venueDetails.venueHHStartSunday1,
+                              sunEnd1: venueDetails.venueHHEndSunday1,
+                              monStart2: venueDetails.venueHHStartMonday2,
+                              monEnd2: venueDetails.venueHHEndMonday2,
+                              tueStart2: venueDetails.venueHHStartTuesday2,
+                              tueEnd2: venueDetails.venueHHEndTuesday2,
+                              wedStart2: venueDetails.venueHHStartWednesday2,
+                              wedEnd2: venueDetails.venueHHEndWednesday2,
+                              thuStart2: venueDetails.venueHHStartThursday2,
+                              thuEnd2: venueDetails.venueHHEndThursday2,
+                              friStart2: venueDetails.venueHHStartFriday2,
+                              friEnd2: venueDetails.venueHHEndFriday2,
+                              satStart2: venueDetails.venueHHStartSaturday2,
+                              satEnd2: venueDetails.venueHHEndSaturday2,
+                              sunStart2: venueDetails.venueHHStartSunday2,
+                              sunEnd2: venueDetails.venueHHEndSunday2),
+                          venueDetails.venueHHNotes == ""
+                              ? Container()
+                              : Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 8.0,
+                                    bottom: 8.0,
+                                    left: 8.0,
+                                    right: 8.0),
+                                child: Text(
+                                  "Happy Hour Offers",
+                                  style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .headline4,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 8.0,
+                                    bottom: 8.0,
+                                    left: 8.0,
+                                    right: 8.0),
+                                child: Text(
+                                  venueDetails.venueHHNotes,
+                                  style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .bodyText1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+                child: Container(
+                  width: double.infinity,
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10.0, bottom: 10.0, left: 8.0, right: 8.0),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                bottom: 8.0, left: 8.0, right: 8.0),
+                            child: Text(
+                              "Facilities & Policies",
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .headline2,
+                            ),
+                          ),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere(
+                                      (keySymbolClass) =>
+                                      keySymbolClass.facilityName.contains(
+                                          "InOut${venueDetails.venueInOut}")),
+                              description: venueDetails.venueInOutNote),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere(
+                                      (keySymbolClass) =>
+                                      keySymbolClass.facilityName.contains(
+                                          "Views${venueDetails.venueViews}")),
+                              description: venueDetails.venueViewsNote),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere(
+                                      (keySymbolClass) =>
+                                      keySymbolClass.facilityName.contains(
+                                          "Food${venueDetails.venueFood}")),
+                              description: venueDetails.venueFoodNote),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere((
+                                  keySymbolClass) =>
+                                  keySymbolClass.facilityName.contains(
+                                      "Smoking${venueDetails.venueSmoking}")),
+                              description: venueDetails.venueSmokingNote),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere((
+                                  keySymbolClass) =>
+                                  keySymbolClass.facilityName.contains(
+                                      "RecMusic${venueDetails.venueRecMusic}")),
+                              description: venueDetails.venueRecMusicNote),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere((
+                                  keySymbolClass) =>
+                                  keySymbolClass.facilityName.contains(
+                                      "LiveEnt${venueDetails.venueLiveEnt}")),
+                              description: venueDetails.venueLiveEntNote),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere((
+                                  keySymbolClass) =>
+                                  keySymbolClass.facilityName.contains(
+                                      "CCharge${venueDetails.venueCCharge}")),
+                              description: venueDetails.venueCChargeNote),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere((
+                                  keySymbolClass) =>
+                                  keySymbolClass.facilityName.contains(
+                                      "DressCode${venueDetails
+                                          .venueDressCode}")),
+                              description: venueDetails.venueDressCodeNote),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere((
+                                  keySymbolClass) =>
+                                  keySymbolClass.facilityName.contains(
+                                      "ChildPolicy${venueDetails
+                                          .venueChildPolicy}")),
+                              description: venueDetails.venueChildPolicyNote),
+                          facilityWidget(
+                              index: keySymbolList.indexWhere((
+                                  keySymbolClass) =>
+                                  keySymbolClass.facilityName.contains(
+                                      "Accessibility${venueDetails
+                                          .venueAccessibility}")),
+                              description: venueDetails.venueAccessibilityNote),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -375,12 +528,11 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
     );
   }
 
-  Widget goodForWidget(
-      {String goodForTitle, String goodForDescription, TextTheme textTheme}) {
+  Widget goodForWidget({String goodForTitle, String goodForDescription, TextTheme textTheme}) {
     return Container(
       child: Column(
         children: <Widget>[
-          Text(goodForTitle, style: textTheme.headline2),
+          Text(goodForTitle, style: textTheme.headline4),
           Padding(
             padding: const EdgeInsets.only(top: 2.0, bottom: 4.0),
             child: Text(goodForDescription, style: textTheme.bodyText1),
@@ -609,6 +761,65 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
             ]),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget facilityWidget({int index, String description}) {
+    index < 0 ? index = 0 : index;
+
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            child: Text(
+              keySymbolList[index].symbolCategory,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              Flexible(
+                  flex: 1,
+                  child: Container(
+                    child: Stack(
+                      children: <Widget>[
+                        Center(
+                          child: Image(
+                            image: AssetImage(
+                                keySymbolList[index].backgroundIndicator),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Center(
+                          child: Image(
+                            image: AssetImage(keySymbolList[index].symbol),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+              Flexible(
+                flex: 6,
+                child: description.length > 0
+                    ? Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(description,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .bodyText1),
+                )
+                    : SizedBox.shrink(),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

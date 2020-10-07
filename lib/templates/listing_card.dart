@@ -100,10 +100,7 @@ class ListingCard extends StatelessWidget {
                                     listingCard.venueLocation,
                                     textAlign: TextAlign.left,
                                     style:
-                                    Theme
-                                        .of(context)
-                                        .textTheme
-                                        .bodyText2,
+                                        Theme.of(context).textTheme.bodyText2,
                                   ),
                                 ],
                               ),
