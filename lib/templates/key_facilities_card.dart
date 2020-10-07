@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:bzoozle/models/key_model.dart';
 import 'package:bzoozle/settings/dimensions.dart';
-
-import 'package:bzoozle/templates/myCard.dart';
+import 'package:flutter/material.dart';
 
 class KeyFacilitiesCard extends StatelessWidget {
   const KeyFacilitiesCard({Key key, this.categoryContents}) : super(key: key);
@@ -15,7 +12,7 @@ class KeyFacilitiesCard extends StatelessWidget {
       height: cardSize / 100 * 70,
       child: Padding(
         padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-        child: MyCard(
+        child: Card(
           child: Column(
             children: <Widget>[
               Padding(
@@ -26,7 +23,7 @@ class KeyFacilitiesCard extends StatelessWidget {
                   style: Theme
                       .of(context)
                       .textTheme
-                      .headline1,
+                      .headline2,
                 ),
               ),
               rowCard(listIndex: 0, textTheme: Theme
@@ -86,7 +83,7 @@ class KeyFacilitiesCard extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 12.0, right: 8.0),
                     child: Text(
                       categoryContents[listIndex].symbolDescription,
-                      style: textTheme.headline1,
+                      style: textTheme.bodyText1,
                     ),
                   )),
             ],

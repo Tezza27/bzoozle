@@ -16,14 +16,25 @@ class VenueClass {
     this.venueRegPrice,
     this.venueHHPrice,
     this.venueInOut,
+    this.venueInOutNote,
+    this.venueViews,
+    this.venueViewsNote,
     this.venueFood,
+    this.venueFoodNote,
     this.venueSmoking,
+    this.venueSmokingNote,
     this.venueRecMusic,
+    this.venueRecMusicNote,
     this.venueLiveEnt,
+    this.venueLiveEntNote,
     this.venueCCharge,
+    this.venueCChargeNote,
     this.venueDressCode,
+    this.venueDressCodeNote,
     this.venueChildPolicy,
+    this.venueChildPolicyNote,
     this.venueAccessibility,
+    this.venueAccessibilityNote,
     this.venueDistance,
     this.venueGoodForTitle1,
     this.venueGoodForDescription1,
@@ -55,27 +66,28 @@ class VenueClass {
     this.venueCloseMonday2,
     this.venueCloseTuesday1,
     this.venueCloseTuesday2,
-    this.venueCloseWednesday1,
-    this.venueCloseWednesday2,
-    this.venueCloseThursday1,
-    this.venueCloseThursday2,
-    this.venueCloseFriday1,
-    this.venueCloseFriday2,
-    this.venueCloseSaturday1,
-    this.venueCloseSaturday2,
-    this.venueCloseSunday1,
-    this.venueCloseSunday2,
-    this.venueHHStartMonday1,
-    this.venueHHStartMonday2,
-    this.venueHHStartTuesday1,
-    this.venueHHStartTuesday2,
-    this.venueHHStartWednesday1,
-    this.venueHHStartWednesday2,
-    this.venueHHStartThursday1,
-    this.venueHHStartThursday2,
-    this.venueHHStartFriday1,
-    this.venueHHStartFriday2,
-    this.venueHHStartSaturday1,
+      this.venueCloseWednesday1,
+      this.venueCloseWednesday2,
+      this.venueCloseThursday1,
+      this.venueCloseThursday2,
+      this.venueCloseFriday1,
+      this.venueCloseFriday2,
+      this.venueCloseSaturday1,
+      this.venueCloseSaturday2,
+      this.venueCloseSunday1,
+      this.venueCloseSunday2,
+      this.venueOpeningTimesNotes,
+      this.venueHHStartMonday1,
+      this.venueHHStartMonday2,
+      this.venueHHStartTuesday1,
+      this.venueHHStartTuesday2,
+      this.venueHHStartWednesday1,
+      this.venueHHStartWednesday2,
+      this.venueHHStartThursday1,
+      this.venueHHStartThursday2,
+      this.venueHHStartFriday1,
+      this.venueHHStartFriday2,
+      this.venueHHStartSaturday1,
     this.venueHHStartSaturday2,
     this.venueHHStartSunday1,
     this.venueHHStartSunday2,
@@ -93,6 +105,7 @@ class VenueClass {
     this.venueHHEndSaturday2,
     this.venueHHEndSunday1,
     this.venueHHEndSunday2,
+    this.venueHHNotes,
   });
 
   final String venueID;
@@ -110,14 +123,25 @@ class VenueClass {
   final int venueRegPrice;
   final int venueHHPrice;
   final String venueInOut;
+  final String venueInOutNote;
+  final String venueViews;
+  final String venueViewsNote;
   final String venueFood;
+  final String venueFoodNote;
   final String venueSmoking;
+  final String venueSmokingNote;
   final String venueRecMusic;
+  final String venueRecMusicNote;
   final String venueLiveEnt;
+  final String venueLiveEntNote;
   final String venueCCharge;
+  final String venueCChargeNote;
   final String venueDressCode;
+  final String venueDressCodeNote;
   final String venueChildPolicy;
+  final String venueChildPolicyNote;
   final String venueAccessibility;
+  final String venueAccessibilityNote;
   final String venueDistance;
   final String venueGoodForTitle1;
   final String venueGoodForDescription1;
@@ -159,6 +183,7 @@ class VenueClass {
   final String venueCloseSaturday2;
   final String venueCloseSunday1;
   final String venueCloseSunday2;
+  final String venueOpeningTimesNotes;
   final String venueHHStartMonday1;
   final String venueHHStartMonday2;
   final String venueHHStartTuesday1;
@@ -187,4 +212,5 @@ class VenueClass {
   final String venueHHEndSaturday2;
   final String venueHHEndSunday1;
   final String venueHHEndSunday2;
+  final String venueHHNotes;
 }
