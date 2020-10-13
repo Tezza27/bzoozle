@@ -113,19 +113,19 @@ final List<KeySymbolClass> keySymbolList = const <KeySymbolClass>[
       symbolDescription: "No live entertainment"),
   const KeySymbolClass(
       facilityName: "CCharge1",
-      symbolCategory: "Live Entry Fee",
+      symbolCategory: "Cover Charge/Entry Fee",
       backgroundIndicator: "assets/green_square.png",
       symbol: "assets/icon_cover.png",
       symbolDescription: "Always free entry"),
   const KeySymbolClass(
       facilityName: "CCharge2",
-      symbolCategory: "Live Entry Fee",
+      symbolCategory: "Cover Charge/Entry Fee",
       backgroundIndicator: "assets/orange_octagon.png",
       symbol: "assets/icon_cover.png",
       symbolDescription: "Sometimes a cover charge/entry fee"),
   const KeySymbolClass(
       facilityName: "CCharge3",
-      symbolCategory: "Live Entry Fee",
+      symbolCategory: "Cover Charge/Entry Fee",
       backgroundIndicator: "assets/red_circle.png",
       symbol: "assets/icon_cover.png",
       symbolDescription: "Always a cover charge/entry fee"),
@@ -185,3 +185,18 @@ final List<KeySymbolClass> keySymbolList = const <KeySymbolClass>[
       symbol: "assets/icon_accessibility.png",
       symbolDescription: "Not accessible for visitors with special needs"),
 ];
+
+List<List<KeySymbolClass>> createListOfLists() {
+  List<List<KeySymbolClass>> categoryContentsList =
+      List<List<KeySymbolClass>>();
+  for (int i = 0; i < keySymbolList.length; i = i + 3) {
+    List<KeySymbolClass> subList = [
+      keySymbolList[i],
+      keySymbolList[i + 1],
+      keySymbolList[i + 2]
+    ];
+    categoryContentsList.add(subList);
+  }
+
+  return categoryContentsList;
+}

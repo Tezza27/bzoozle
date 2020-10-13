@@ -1,6 +1,7 @@
 import 'package:bzoozle/lists/key_list.dart';
 import 'package:bzoozle/models/venue_model.dart';
 import 'package:bzoozle/settings/myTheme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /*This is the venue detail screen
@@ -16,11 +17,42 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final VenueClass venueDetails =
-    ModalRoute.of(context).settings.arguments as VenueClass;
+        ModalRoute.of(context).settings.arguments as VenueClass;
 
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: iconColour),
+        actions: <Widget>[
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, "EditVenueScreen",
+                      arguments: venueDetails);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 12.0),
+                  child: Icon(
+                    Icons.edit,
+                    color: iconColour,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, "KeyFacilitiesScreen");
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 24.0),
+                  child: Icon(
+                    Icons.vpn_key,
+                    color: iconColour,
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
         title: Text(
           venueDetails.venueName,
           style: Theme.of(context).textTheme.headline2,
@@ -528,7 +560,8 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
     );
   }
 
-  Widget goodForWidget({String goodForTitle, String goodForDescription, TextTheme textTheme}) {
+  Widget goodForWidget(
+      {String goodForTitle, String goodForDescription, TextTheme textTheme}) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -766,7 +799,9 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
   }
 
   Widget facilityWidget({int index, String description}) {
-    index < 0 ? index = 0 : index;
+    if (index < 0) {
+      index = 0;
+    }
 
     return Container(
       child: Column(
@@ -781,42 +816,54 @@ class _VenueDetailScreenState extends State<VenueDetailScreen> {
                   .headline4,
             ),
           ),
-          Row(
-            children: <Widget>[
-              Flexible(
-                  flex: 1,
-                  child: Container(
-                    child: Stack(
-                      children: <Widget>[
-                        Center(
-                          child: Image(
-                            image: AssetImage(
-                                keySymbolList[index].backgroundIndicator),
-                            fit: BoxFit.cover,
+          Column(
+            children: [
+              Text(
+                keySymbolList[index].symbolDescription,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .bodyText1,
+              ),
+              Row(
+                children: <Widget>[
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      child: Stack(
+                        children: <Widget>[
+                          Center(
+                            child: Image(
+                              image: AssetImage(
+                                  keySymbolList[index].backgroundIndicator),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        Center(
-                          child: Image(
-                            image: AssetImage(keySymbolList[index].symbol),
-                            fit: BoxFit.cover,
+                          Center(
+                            child: Image(
+                              image: AssetImage(keySymbolList[index].symbol),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  )),
-              Flexible(
-                flex: 6,
-                child: description.length > 0
-                    ? Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Text(description,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodyText1),
-                )
-                    : SizedBox.shrink(),
-              )
+                  ),
+                  Flexible(
+                    flex: 6,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: description.length > 0
+                          ? Text(description,
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .bodyText1)
+                          : SizedBox.shrink(),
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ],

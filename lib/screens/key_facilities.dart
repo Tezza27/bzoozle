@@ -15,7 +15,6 @@ class _KeyFacilitiesScreenState extends State<KeyFacilitiesScreen> {
     List<List<KeySymbolClass>> categoryContentsList = createListOfLists();
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: appBarColour,
         iconTheme: IconThemeData(color: iconColour),
         title: Text(
           "Key To Facilities Symbols",
@@ -27,7 +26,6 @@ class _KeyFacilitiesScreenState extends State<KeyFacilitiesScreen> {
         centerTitle: true,
       ),
       body: Container(
-        //color: backgroundColour,
         child: Padding(
           padding: const EdgeInsets.only(top: 2.0),
           child: ListView.builder(
@@ -45,18 +43,18 @@ class _KeyFacilitiesScreenState extends State<KeyFacilitiesScreen> {
     );
   }
 
-  List<List<KeySymbolClass>> createListOfLists() {
-    List<List<KeySymbolClass>> categoryContentsList =
-        List<List<KeySymbolClass>>();
-    for (int i = 0; i < keySymbolList.length; i = i + 3) {
-      List<KeySymbolClass> subList = [
-        keySymbolList[i],
-        keySymbolList[i + 1],
-        keySymbolList[i + 2]
-      ];
-      categoryContentsList.add(subList);
-    }
-
-    return categoryContentsList;
-  }
+// List<List<KeySymbolClass>> createListOfLists() {
+//   List<List<KeySymbolClass>> categoryContentsList =
+//   List<List<KeySymbolClass>>();
+//   for (int i = 0; i < keySymbolList.length; i = i + 3) {
+//     List<KeySymbolClass> subList = [
+//       keySymbolList[i],
+//       keySymbolList[i + 1],
+//       keySymbolList[i + 2]
+//     ];
+//     categoryContentsList.add(subList);
+//   }
+//
+//   return categoryContentsList;
+// }
 }
