@@ -126,18 +126,18 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
           contentContainer = whatToExpectContainer(venueDetails: venueDetails);
         }
         break;
-      case "Opening Times":
-        {
-          contentContainer = openingTimesContainer(
-              venueDetails: venueDetails, textTheme: textTheme);
-        }
-        break;
-      case "Happy Hours":
-        {
-          contentContainer = happyHoursContainer(
-              venueDetails: venueDetails, textTheme: textTheme);
-        }
-        break;
+    // case "Opening Times":
+    //   {
+    //     contentContainer = openingTimesContainer(
+    //         venueDetails: venueDetails, textTheme: textTheme);
+    //   }
+    //   break;
+    // case "Happy Hours":
+    //   {
+    //     contentContainer = happyHoursContainer(
+    //         venueDetails: venueDetails, textTheme: textTheme);
+    //   }
+    //   break;
       case "Photograph":
         {
           contentContainer = photographContainer();
@@ -301,7 +301,6 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
             TextField(
               controller: _controller,
               autocorrect: true,
-              autofocus: false,
               keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.sentences,
               maxLength: 300,
@@ -432,7 +431,6 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
             TextField(
               controller: _controllerLongDescription,
               autocorrect: true,
-              autofocus: true,
               keyboardType: TextInputType.text,
               textCapitalization: TextCapitalization.sentences,
               minLines: 5,
@@ -477,7 +475,6 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
     return TextField(
       controller: controller,
       autocorrect: true,
-      autofocus: true,
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.sentences,
       maxLength: 28,
@@ -507,7 +504,6 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
     return TextField(
       controller: controller,
       autocorrect: true,
-      autofocus: true,
       keyboardType: TextInputType.text,
       textCapitalization: TextCapitalization.sentences,
       maxLength: 300,
@@ -924,7 +920,7 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
                               fontSize: 16.0,
                               fontWeight: FontWeight.normal,
                               color: Colors.black),
-                          iconSize: 10.00,
+                          iconSize: 0.00,
                           onChanged: (String newValue) {
                             setState(() {
                               chosenValue = newValue;
@@ -949,7 +945,6 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
               child: TextField(
                 controller: controller,
                 autocorrect: true,
-                autofocus: true,
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.sentences,
                 maxLength: 300,

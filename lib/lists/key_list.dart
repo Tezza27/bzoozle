@@ -80,19 +80,19 @@ final List<KeySymbolClass> keySymbolList = const <KeySymbolClass>[
       symbolCategory: "Recorded Music",
       backgroundIndicator: "assets/green_square.png",
       symbol: "assets/icon_recorded_music.png",
-      symbolDescription: "Recorded music always played"),
+      symbolDescription: "Music always played"),
   const KeySymbolClass(
       facilityName: "RecMusic2",
       symbolCategory: "Recorded Music",
       backgroundIndicator: "assets/orange_octagon.png",
       symbol: "assets/icon_recorded_music.png",
-      symbolDescription: "Recorded music sometimes played"),
+      symbolDescription: "Music sometimes played"),
   const KeySymbolClass(
       facilityName: "RecMusic3",
       symbolCategory: "Recorded Music",
       backgroundIndicator: "assets/red_circle.png",
       symbol: "assets/icon_recorded_music.png",
-      symbolDescription: "No recorded music played"),
+      symbolDescription: "No music"),
   const KeySymbolClass(
       facilityName: "LiveEnt1",
       symbolCategory: "Live Entertainment",
@@ -122,31 +122,31 @@ final List<KeySymbolClass> keySymbolList = const <KeySymbolClass>[
       symbolCategory: "Cover Charge/Entry Fee",
       backgroundIndicator: "assets/orange_octagon.png",
       symbol: "assets/icon_cover.png",
-      symbolDescription: "Sometimes a cover charge/entry fee"),
+      symbolDescription: "Sometimes an entry fee"),
   const KeySymbolClass(
       facilityName: "CCharge3",
       symbolCategory: "Cover Charge/Entry Fee",
       backgroundIndicator: "assets/red_circle.png",
       symbol: "assets/icon_cover.png",
-      symbolDescription: "Always a cover charge/entry fee"),
+      symbolDescription: "Always an entry fee"),
   const KeySymbolClass(
       facilityName: "DressCode1",
       symbolCategory: "Dress Code",
       backgroundIndicator: "assets/green_square.png",
       symbol: "assets/icon_dresscode.png",
-      symbolDescription: "No dress restrictions - anything goes!"),
+      symbolDescription: "No restrictions - anything goes!"),
   const KeySymbolClass(
       facilityName: "DressCode2",
       symbolCategory: "Dress Code",
       backgroundIndicator: "assets/orange_octagon.png",
       symbol: "assets/icon_dresscode.png",
-      symbolDescription: "Some dress restrictions"),
+      symbolDescription: "Some restrictions"),
   const KeySymbolClass(
       facilityName: "DressCode3",
       symbolCategory: "Dress Code",
       backgroundIndicator: "assets/red_circle.png",
       symbol: "assets/icon_dresscode.png",
-      symbolDescription: "Strict dress restrictions"),
+      symbolDescription: "Strict restrictions"),
   const KeySymbolClass(
       facilityName: "ChildPolicy1",
       symbolCategory: "Child Policy",
@@ -158,7 +158,7 @@ final List<KeySymbolClass> keySymbolList = const <KeySymbolClass>[
       symbolCategory: "Child Policy",
       backgroundIndicator: "assets/orange_octagon.png",
       symbol: "assets/icon_child.png",
-      symbolDescription: "Families welcome (restricted times or areas)"),
+      symbolDescription: "Restrictions apply"),
   const KeySymbolClass(
       facilityName: "ChildPolicy3",
       symbolCategory: "Child Policy",
@@ -170,20 +170,20 @@ final List<KeySymbolClass> keySymbolList = const <KeySymbolClass>[
       symbolCategory: "Accessibility",
       backgroundIndicator: "assets/green_square.png",
       symbol: "assets/icon_accessibility.png",
-      symbolDescription: "Fully accessible for all visitors"),
+      symbolDescription: "Fully accessibility"),
   const KeySymbolClass(
       facilityName: "Accessibility2",
       symbolCategory: "Accessibility",
       backgroundIndicator: "assets/orange_octagon.png",
       symbol: "assets/icon_accessibility.png",
       symbolDescription:
-          "Partially accessible (some visitors could experience difficulty)"),
+      "Partially accessibility"),
   const KeySymbolClass(
       facilityName: "Accessibility3",
       symbolCategory: "Accessibility",
       backgroundIndicator: "assets/red_circle.png",
       symbol: "assets/icon_accessibility.png",
-      symbolDescription: "Not accessible for visitors with special needs"),
+      symbolDescription: "Poor accessibility"),
 ];
 
 List<List<KeySymbolClass>> createListOfLists() {

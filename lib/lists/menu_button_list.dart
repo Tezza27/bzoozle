@@ -10,10 +10,6 @@ final List<MenuButtonClass> menuButtonList = const <MenuButtonClass>[
       routerName: "EditVenueScreen",
       buttonImage: null),
   const MenuButtonClass(
-      buttonText: "Flexi list",
-      routerName: "FlexiListScreen",
-      buttonImage: null),
-  const MenuButtonClass(
       buttonText: "My Account", routerName: "AccountScreen", buttonImage: null),
   const MenuButtonClass(
       buttonText: "Share BZOOZLE",
