@@ -7,12 +7,13 @@ final _accentColour = const Color(0xFF1c1c1c);
 final _highlightColour = const Color(0xFFFFFFFF);
 final _reverseTextColour = const Color(0xFFC8C8C8);
 final _transparentColour = const Color(0x00006600);
-final _indicator1Colour = const Color(0xFF4CBB17); //Kelly Green
-final _indicator2Colour = const Color(0xFFFF7800); //Safety Orange
-final _indicator3Colour = const Color(0xFFE60000); //Electric Red
-// final _indicator1Colour = const Color(0xFF26FF03);
-// final _indicator2Colour = const Color(0xFFFF6600);
-// final _indicator3Colour = const Color(0xFFFF0000);
+final _indicator1Colour = const Color(0xFF26FF03);
+final _indicator2Colour = const Color(0xFFFF6600);
+final _indicator3Colour = const Color(0xFFFF0000);
+// final _indicator1Colour = const Color(0xFF4CBB17); //Kelly Green
+// final _indicator2Colour = const Color(0xFFFF7800); //Safety Orange
+// final _indicator3Colour = const Color(0xFFE60000); //Electric Red
+
 
 final backgroundColour = _primaryColour;
 final borderColour = _secondaryColour;
