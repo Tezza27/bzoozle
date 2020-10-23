@@ -9,6 +9,7 @@ import 'screens/listings.dart';
 import 'screens/main_menu.dart';
 import 'screens/talk_to_us.dart';
 import 'screens/venue_detail.dart';
+import 'screens/firestore.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         "TalkToUsScreen": (context) => TalkToUsScreen(),
         "KeyFacilitiesScreen": (context) => KeyFacilitiesScreen(),
         "VenueDetailsScreen": (context) => VenueDetailScreen(),
+        "FirestoreTestScreen": (context) => FirestoreTestScreen(),
       },
     );
   }

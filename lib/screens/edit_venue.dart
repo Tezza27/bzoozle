@@ -126,18 +126,18 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
           contentContainer = whatToExpectContainer(venueDetails: venueDetails);
         }
         break;
-    // case "Opening Times":
-    //   {
-    //     contentContainer = openingTimesContainer(
-    //         venueDetails: venueDetails, textTheme: textTheme);
-    //   }
-    //   break;
-    // case "Happy Hours":
-    //   {
-    //     contentContainer = happyHoursContainer(
-    //         venueDetails: venueDetails, textTheme: textTheme);
-    //   }
-    //   break;
+      // case "Opening Times":
+      //   {
+      //     contentContainer = openingTimesContainer(
+      //         venueDetails: venueDetails, textTheme: textTheme);
+      //   }
+      //   break;
+      // case "Happy Hours":
+      //   {
+      //     contentContainer = happyHoursContainer(
+      //         venueDetails: venueDetails, textTheme: textTheme);
+      //   }
+      //   break;
       case "Photograph":
         {
           contentContainer = photographContainer();
@@ -979,7 +979,7 @@ class _EditVenueScreenState extends State<EditVenueScreen> {
       child: RaisedButton(
         child: Text(buttonText),
         onPressed: () {
-          onPressedFunction;
+          //onPressedFunction;
         },
       ),
     );

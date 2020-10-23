@@ -6,6 +6,10 @@ final List<MenuButtonClass> menuButtonList = const <MenuButtonClass>[
   const MenuButtonClass(
       buttonText: "Venues", routerName: "ListingsScreen", buttonImage: null),
   const MenuButtonClass(
+      buttonText: "Firestore Test",
+      routerName: "FirestoreTestScreen",
+      buttonImage: null),
+  const MenuButtonClass(
       buttonText: "Edit Venue",
       routerName: "EditVenueScreen",
       buttonImage: null),
